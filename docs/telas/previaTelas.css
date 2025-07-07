@@ -1,0 +1,78 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+        :root {
+            --corBlocks: rgba(90, 184, 101, 0.2);
+            --corSubTitulo: #000000;
+            --corTexto: #0e5236;
+
+            --fonte: 'Share Tech Mono';
+        }
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: linear-gradient(to bottom, #F6FFF7, #beffc3);
+    background-attachment: fixed;
+    color: var(--corBlocks);
+}
+
+header, main, footer {
+    background-color: var(--corBlocks);
+    color: var(--corTexto);
+
+    border: 3px solid var(--corTexto);
+    box-shadow: 5px 3px 7px 1px rgba(0, 0, 0, 0.5);
+    margin: 10px;
+
+    max-width: 1200px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+header {
+    margin-top: 10px;
+    padding: 25px 0px;
+    text-align: center;
+    
+    border-radius: 10px 10px 0px 0px;
+    
+    h1 {
+        font-family: var(--fonte);
+        font-size: 2.5em;
+        font-style: normal;
+        letter-spacing: 2px; /* Espaçamento entre letras */
+    }
+}
+
+main {
+    padding: 20px 0px;
+    text-align: center;
+
+    h2 {
+        padding: 20px 40px;
+        font-size: 2em;
+        font-family: var(--fonte);
+    }
+}
+
+footer {
+    font-family: var(--fonte);
+    text-align: center;
+    padding: 8px 0px;
+
+    border-radius: 0px 0px 10px 10px;
+}
+
+a {
+    color: var(--corTexto);
+    text-decoration: none;
+}
+a:hover {
+    color: var(--corSubTitulo);
+    text-decoration: none;
+}
