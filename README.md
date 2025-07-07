@@ -5,6 +5,11 @@ Descrição do Projeto: ONGs publicam vagas para trabalho voluntário e interess
 Entidades: Representante da ONG, Voluntário, Administrador.
 
 
+## Prévia das telas da Plataforma de Voluntariado
+
+[Telas](https://mateusnogueiraiff.github.io/connect-volunteers-ngos/docs/telas/previaTelas.html)
+
+
 ## Autores
 
 [@mateusnogueiraiff](https://www.github.com/mateusnogueiraiff)
