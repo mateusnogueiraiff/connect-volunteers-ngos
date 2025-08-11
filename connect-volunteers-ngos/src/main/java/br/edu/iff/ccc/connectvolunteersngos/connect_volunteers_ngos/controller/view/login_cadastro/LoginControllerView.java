@@ -24,7 +24,7 @@ public class LoginControllerView {
 
         //teste enquanto n tem a lógica ainda
         if ("admin@email.com".equals(email) && "123456".equals(senha)) {
-            return "redirect:home-administrador"; // Redireciona para a home após login
+            return "redirect:home-administrador";
         }
 
         model.addAttribute("erro", "E-mail ou senha inválidos.");

@@ -22,9 +22,8 @@ public class CadastroControllerView {
             @RequestParam("tipoUsuario") String tipoUsuario,
             RedirectAttributes redirectAttributes //envia o nome de user para a pag seguinte
     ) {
-        // Aqui você poderia salvar os dados no banco (ainda não implementado)
-        // Por enquanto, vamos simular que o cadastro deu certo e redirecionar
-        // para a home específica do tipo de usuário
+        /* futuramente salvará os dados no banco.
+        no momento, simulando q o cadastro deu certo e redirecionando para a home específica do tipo de usuário */ 
 
         // Passando o nome para mostrar na home (simulação)
         redirectAttributes.addFlashAttribute("nome", nome);
