@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ConnectVolunteersNgosApplication<connect-volunteers-ngos>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.ConnectVolunteersNgosApplication",
+            "projectName": "connect-volunteers-ngos",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="#{plataform.name}">App Title</title>
+</head>
+<body>
+    <h1>Página de Testes</h1>
+    <h2>Funcionou amém</h2>
+
+    <p th:text="#{app.welcome(#{plataform.name})}">Welcome Message App Title</p>
+    <p>Você está na página principal</p>
+
+    <p>ID: <span th:text="${id}">ID Placeholder</span></p>
+    <p>Nome do Representante: <span th:text="${nomeRepresentante}">Nome do Representante Placeholder</span></p>
+    <p>Nome da ONG: <span th:text="${nomeONG}">Nome da ONG Placeholder</span></p>
+    <p>Descrição: <span th:text="${descricao}">Descrição Placeholder</span></p>
+    <p>Quantidade de Voluntários: <span th:text="${qtdVoluntarios}">Quantidade de Voluntários Placeholder</span></p>
+
+    <hr style="margin: 50px 0px;">
+
+    <form action="#" th:action="@{/principal/testeAula}" method="post">
+        <fieldset>
+            <legend>form de teste</legend>
+            <p>
+                <label for="nomeRepresentante">ID: </label>
+                <input type="text" name="id" placeholder="ID" />
+            </p>
+            <p>
+                <label for="nomeRepresentante">Nome Representante: </label>
+                <input type="text" name="nomeRepresentante" placeholder="Nome do Representante" />
+            </p>
+            <p>
+                <label for="nomeRepresentante">Nome da ONG: </label>
+                <input type="text" name="nomeONG" placeholder="Nome da ONG" />
+            </p>
+            <p>
+                <label for="nomeRepresentante">Descrição: </label>
+                <input type="text" name="descricao" placeholder="Descrição" />
+            </p>
+            <p>
+                <label for="nomeRepresentante">Quantidade de Voluntários: </label>
+                <input type="number" name="qtdVoluntarios" placeholder="Qtd de Voluntários" />
+            </p>
+
+            <button type="submit">Enviar</button>
+            <button type="reset">Limpar</button>
+        </fieldset>
+    </form>
+</body>
+</html>
