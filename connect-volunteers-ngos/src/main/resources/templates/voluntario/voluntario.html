@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Voluntário</title>
+</head>
+<body>
+    <h1>Detalhes do Voluntário</h1>
+
+    <div th:if="${errorMessage}">
+        <p th:text="${errorMessage}" style="color:red;"></p>
+    </div>
+
+    <div th:unless="${errorMessage}">
+        <p><strong>ID:</strong> <span th:text="${voluntário.idVoluntario}"></span></p>
+        <p><strong>Nome:</strong> <span th:text="${voluntário.nome}"></span></p>
+        <p><strong>Email:</strong> <span th:text="${voluntário.email}"></span></p>
+        <p><strong>Telefone:</strong> <span th:text="${voluntário.telefone}"></span></p>
+        <p><strong>Função:</strong> <span th:text="${voluntário.funcao}"></span></p>
+
+        <a th:href="@{/voluntarios}">Voltar para Lista</a>
+    </div>
+</body>
+</html>
