@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{base_layout :: head}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Voluntários</title>
+</head>
+<body>
+    <div th:replace="~{base_layout :: body}">
+    </div>
+
+    <h1>Lista de Voluntários</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Função</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="voluntario : ${voluntarios}">
+                <td th:text="${voluntario.idVoluntario}"></td>
+                <td th:text="${voluntario.nome}"></td>
+                <td th:text="${voluntario.email}"></td>
+                <td th:text="${voluntario.telefone}"></td>
+                <td th:text="${voluntario.funcao}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Cadastrar Novo Voluntário</h2>
+        <form th:action="@{/voluntarios}" th:object="${voluntario}" method="post">
+            <p>
+                <label>ID:</label>
+                <input type="number" th:field="*{idVoluntario}" required>
+            </p>
+
+            <p>
+                <label>Nome:</label>
+                <input type="text" th:field="*{nome}" required>
+            </p>
+
+            <p>
+                <label>Email:</label>
+                <input type="email" th:field="*{email}" required>
+            </p>
+
+            <p>
+                <label>Senha:</label>
+                <input type="password" th:field="*{senha}" required>
+            </p>
+
+            <p>
+                <label>Telefone:</label>
+                <input type="text" th:field="*{telefone}">
+            </p>
+
+            <p>
+                <label>Função:</label>
+                <input type="text" th:field="*{funcao}">
+            </p>
+
+            <button type="submit">Salvar</button>
+            <button type="reset">Limpar</button>
+        </form>
+</body>
+</html>
