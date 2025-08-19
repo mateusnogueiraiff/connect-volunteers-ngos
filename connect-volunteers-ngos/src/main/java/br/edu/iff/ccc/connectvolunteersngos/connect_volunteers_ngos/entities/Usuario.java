@@ -1,15 +1,17 @@
-/* package br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities;
+package br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities;
 
 import java.io.Serializable;
 
 import jakarta.persistence.Id;
-
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     
@@ -81,4 +83,3 @@ public abstract class Usuario implements Serializable {
         this.funcao = funcao;
     }
 }
- */

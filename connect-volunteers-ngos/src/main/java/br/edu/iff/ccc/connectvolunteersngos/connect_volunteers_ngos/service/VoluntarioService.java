@@ -13,9 +13,9 @@ public class VoluntarioService {
 
     public VoluntarioService() {
         voluntarios = new ArrayList<>();
-        voluntarios.add(new Voluntario(1L, "Voluntario 1", "voluntario1@email.com", "123", "(22) 99999-8888", "Voluntário"));
-        voluntarios.add(new Voluntario(2L, "Voluntario 2", "voluntario2@email.com", "123", "(22) 99999-8888", "Voluntário"));
-        voluntarios.add(new Voluntario(3L, "Voluntario 3", "voluntario3@email.com", "123", "(22) 99999-8888", "Voluntário"));
+        voluntarios.add(new Voluntario(1L, 1L, "Voluntario 1", "voluntario1@email.com", "123", "(22) 99999-8888", "Voluntário"));
+        voluntarios.add(new Voluntario(2L, 2L, "Voluntario 2", "voluntario2@email.com", "123", "(22) 99999-8888", "Voluntário"));
+        voluntarios.add(new Voluntario(3L, 3L, "Voluntario 3", "voluntario3@email.com", "123", "(22) 99999-8888", "Voluntário"));
     }
 
     public void saveVoluntario(Voluntario voluntario) {
