@@ -1,21 +1,21 @@
-package br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities;
+package br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.user;
 
 import java.io.Serializable;
 
 import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-@MappedSuperclass
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     @NotNull
     private Long idUser;
 

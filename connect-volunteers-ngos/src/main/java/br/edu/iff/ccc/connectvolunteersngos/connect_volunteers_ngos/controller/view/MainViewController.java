@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequestMapping(path = "principal")
 public class MainViewController {
     
-    @GetMapping("/")
+    @GetMapping("")
     public String getHomePage() {
         return "index.html";
     }

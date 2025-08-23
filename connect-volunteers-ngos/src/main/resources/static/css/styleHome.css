@@ -1,0 +1,112 @@
+@charset "UTF-8";
+
+/*Esoço da página home - NADA DEFINIDO*/
+
+:root {
+    /* Definir e criar variáveis:
+    - Paleta de Cores
+    - Fontes
+    */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    /*background-image: linear-gradient(to bottom, #F6FFF7, #E6FFE8);*/
+    background-color: lightblue;
+    background-attachment: fixed;
+}
+
+/* dar um jeito de alinhar a logo com a nav*/
+header {
+    background-color: white;
+    padding: 5px;
+    
+    nav {
+        display: flex;
+        justify-content: flex-end;
+        gap: 20px;
+        padding: 10px 20px;
+
+        a {
+        text-decoration: none;
+        }
+    }
+    
+    .opcao-menu {
+    color: #4CAF50;
+    padding: 10px 10px;
+    }
+    #button-login {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+
+    section {
+        margin: 20px 0px;
+    }
+
+    #box-cadastro {
+        font-size: 1.2em;
+        background-color: #4CAF50;
+        padding: 20px;
+        text-align: center;
+        width: 100%;
+
+        #button-cadastro-representante {
+            font-size: 0.9em;
+            background-color: rgb(0, 155, 252);
+            padding: 0px 20px;
+            width: 180px;
+            text-decoration: none;
+            border-radius: 10px;
+            margin: 10px;
+            display: inline-block;
+
+            a {
+            text-decoration: none;
+            color: white
+            }
+        }
+
+        #button-cadastro-voluntario {
+            font-size: 0.9em; 
+            background-color: white;
+            padding: 0px 20px;
+            width: 180px;
+            text-decoration: none;
+            border-radius: 10px;
+            margin: 10px;
+            display: inline-block;
+
+            a {
+            text-decoration: none;
+            color: #4CAF50;
+            }
+        }
+    }
+}
+
+footer {
+    background-color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0; /* Fixa o rodapé na parte inferior */
+    width: 100%;
+}

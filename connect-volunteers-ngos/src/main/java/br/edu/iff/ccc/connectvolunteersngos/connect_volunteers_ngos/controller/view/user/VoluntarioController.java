@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.Voluntario;
+import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.user.Voluntario;
 import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.service.VoluntarioService;
 import jakarta.validation.Valid;
 

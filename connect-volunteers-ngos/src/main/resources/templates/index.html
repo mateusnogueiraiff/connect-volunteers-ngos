@@ -3,10 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spring Boot</title>
+    <link rel="stylesheet" href="css/styleHome.css">
+    <title th:text="#{plataform.name}">...</title>
 </head>
 <body>
-    <h1>Meu primeiro site com Spring Boot</h1>
-    <h2>Funcionou, amém</h2>
+    <header>
+        <div id="logo" th:replace="~{base_layout :: body}">
+            <!-- conteúdo do base_layout
+                vai entrar a logo aq 
+            -->
+        </div>
+
+        <nav>
+            <a href="#" class="opcao-menu">Sobre</a>
+            <a href="#" class="opcao-menu">Dúvidas</a>
+            <a href="/login" id="button-login">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <img src="#" alt="Imagem (alguma relacionada a voluntariado)">
+        </section>
+
+        <section id="box-cadastro">
+            <p>Colocar alguma frase de efeito relacionada ao ato voluntário</p>
+            <div id="button-cadastro-voluntario">
+                <p><a href="/cadastro">Seja Voluntário (a)</a></p>
+            </div>
+            <div id="button-cadastro-representante">
+                <p><a href="/cadastro">Cadastre o orgão/entidade</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Connect Volunteers & NGOs. Todos os direitos reservados.</p>
+    </footer>
 </body>
 </html>
