@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="baseHead">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="#{plataform.name}">Plataform Name</title>
+
+    <link rel="stylesheet" th:href="@{/css/styleBaseHeader.css}">
+    <link rel="stylesheet" th:href="@{/css/styleBaseHeader.css}" media="screen and (max-width: 580px)">
+
+    <!--
+    Para testar o css pelo live server
+    <link rel="stylesheet" href="../static/css/styleBaseHeader.css">
+    <link rel="stylesheet" href="../static/css/mobileBaseHeader.css" media="screen and (max-width: 580px)">
+    -->
+</head>
+
+<body>
+     <header id="conteiner-header" th:fragment="baseHeaderPage">
+        <img th:src="@{/img/logo.png}" alt="LOGO" id="item-logo">
+
+        <nav id="conteiner-menu" class="item-menu">
+            <a th:href="@{/}" class="item-opcao">Home</a>
+            <a th:href="@{/sobre}" class="item-opcao">Sobre</a>
+            <a th:href="@{/duvidas}" class="item-opcao">Dúvidas</a>
+            <a th:href="@{/login}" class="item-opcao" id="item-login">Login</a>
+        </nav>
+    </header>
+
+    <footer th:fragment="baseFooterPage">
+        <p>© 2024 Connect Volunteers & NGOs. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>

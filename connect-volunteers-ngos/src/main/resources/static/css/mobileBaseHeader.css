@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+#conteiner-menu, #conteiner-header {
+    flex-flow: column nowrap;
+}
+
+#item-h1 {
+    flex-basis: 50px;
+}
+
+.item-opcao {
+    width: 90vw;
+}

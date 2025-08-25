@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/*Esoço da página home - NADA DEFINIDO*/
+/*Esboço da página home - NADA DEFINIDO*/
 
 :root {
     /* Definir e criar variáveis:
@@ -19,35 +19,6 @@ body {
     /*background-image: linear-gradient(to bottom, #F6FFF7, #E6FFE8);*/
     background-color: lightblue;
     background-attachment: fixed;
-}
-
-/* dar um jeito de alinhar a logo com a nav*/
-header {
-    background-color: white;
-    padding: 5px;
-    
-    nav {
-        display: flex;
-        justify-content: flex-end;
-        gap: 20px;
-        padding: 10px 20px;
-
-        a {
-        text-decoration: none;
-        }
-    }
-    
-    .opcao-menu {
-    color: #4CAF50;
-    padding: 10px 10px;
-    }
-    #button-login {
-        background-color: #4CAF50;
-        color: white;
-        padding: 10px 20px;
-        text-decoration: none;
-        border-radius: 5px;
-    }
 }
 
 main {
@@ -100,13 +71,4 @@ main {
             }
         }
     }
-}
-
-footer {
-    background-color: white;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0; /* Fixa o rodapé na parte inferior */
-    width: 100%;
 }

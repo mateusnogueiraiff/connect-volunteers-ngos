@@ -1,25 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styleHome.css">
-    <title th:text="#{plataform.name}">...</title>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{baseLayout :: baseHead}">
+    <link rel="stylesheet" th:href="@{/css/styleHome.css}">
 </head>
 <body>
-    <header>
-        <div id="logo" th:replace="~{base_layout :: body}">
-            <!-- conteúdo do base_layout
-                vai entrar a logo aq 
-            -->
-        </div>
-
-        <nav>
-            <a href="#" class="opcao-menu">Sobre</a>
-            <a href="#" class="opcao-menu">Dúvidas</a>
-            <a href="/login" id="button-login">Login</a>
-        </nav>
-    </header>
+    <header th:replace="~{baseLayout :: baseHeaderPage}"></header>
 
     <main>
         <section>
@@ -37,8 +22,6 @@
         </section>
     </main>
 
-    <footer>
-        <p>© 2024 Connect Volunteers & NGOs. Todos os direitos reservados.</p>
-    </footer>
+    <footer th:replace="~{baseLayout :: baseFooterPage}"></footer>
 </body>
 </html>
