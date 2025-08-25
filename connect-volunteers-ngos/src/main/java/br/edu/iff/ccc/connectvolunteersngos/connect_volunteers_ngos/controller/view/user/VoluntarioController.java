@@ -13,6 +13,8 @@ import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 
 
@@ -26,33 +28,40 @@ public class VoluntarioController {
     @GetMapping("/{id}")
     public String getVoluntariosPage(@PathVariable("id") Long id, Model model) {
 
-        Voluntario voluntario = voluntarioService.findVolunarioById(id);
+        Voluntario voluntario = voluntarioService.findVoluntarioById(id);
 
         if (voluntario == null) {
             model.addAttribute("errorMessage", "Voluntário não encontrado.");
-            return "erro.html";
+            return "voluntarios/voluntarios.html";
         }
 
         model.addAttribute("voluntário", voluntario);
         return "voluntario/voluntario.html";
     }
 
-    @GetMapping("")
+    @GetMapping()
     public String getAllVoluntarios(Model model) {
         model.addAttribute("voluntarios", voluntarioService.findAllVoluntarios());
-        model.addAttribute("voluntario", new Voluntario());
+        //model.addAttribute("voluntario", new Voluntario());
         return "voluntario/voluntarios.html";
     }
 
-    @PostMapping("")
-    public String saveVoluntario(@Valid Voluntario voluntario, BindingResult error, Model model) {
+    @GetMapping("/new")
+    public String createNewVoluntario(Model model) {
+        model.addAttribute("voluntario", new Voluntario());
+        return "voluntario/cadastro-voluntario.html";
+    }
+    
+
+    @PostMapping()
+    public String saveVoluntario(@Valid Voluntario voluntario, BindingResult error, Model model, RedirectAttributes redirectAttributes) {
         if (error.hasErrors()) {
             model.addAttribute("errorMessage", "Erro ao salvar o voluntário.");
+            return "voluntario/cadastro-voluntario.html";
         }
 
         voluntarioService.saveVoluntario(voluntario);
-        //mudar para redirectAttribute
-        model.addAttribute("successMessage", "Voluntário salvo com sucesso.");
+        redirectAttributes.addFlashAttribute("successMessage", "Voluntário salvo com sucesso!");
         return "redirect:/voluntarios";
     }
 }

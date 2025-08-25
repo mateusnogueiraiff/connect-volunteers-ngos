@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div th:if="${successMessage}" class="alert alert-success" role="alert">
+      <span th:text="${successMessage}"></span>
+    </div>
+
+    <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+      <span th:text="${errorMessage}"></span>
+    </div>
+
+    <h1>Cadastro de Voluntário</h1>
+        <form th:action="@{/voluntarios}" th:object="${voluntario}" method="post">
+            <p>
+                <label>Nome:</label>
+                <input type="text" th:field="*{nome}" required>
+                <p class="error" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></p>
+            </p>
+
+            <p>
+                <label>Email:</label>
+                <input type="email" th:field="*{email}" required>
+                <p class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+
+            </p>
+
+            <p>
+                <label>Senha:</label>
+                <input type="password" th:field="*{senha}" required>
+                <p class="error" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></p>
+            </p>
+
+            <p>
+                <label>Telefone:</label>
+                <input type="text" th:field="*{telefone}">
+                <p class="error" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></p>
+            </p>
+
+            <p>
+                <label>Função:</label>
+                <select id="funcao" name="funcao" th:field="*{funcao}" required>
+                <option value="" disabled selected>Selecione</option>
+                <option value="voluntario">Voluntário</option>
+                <option value="representante">Representante</option>
+                </select><br><br>
+                <p class="error" th:if="${#fields.hasErrors('funcao')}" th:errors="*{funcao}"></p>
+            </p>
+
+            <button type="submit">Salvar</button>
+            <button type="reset">Limpar</button>
+        </form>
+</body>
+</html>

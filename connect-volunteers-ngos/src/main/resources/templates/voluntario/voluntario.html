@@ -6,20 +6,25 @@
     <title>Detalhes do Voluntário</title>
 </head>
 <body>
-    <h1>Detalhes do Voluntário</h1>
+    <h1>Ficha do Voluntário</h1>
 
+    <!-- 
     <div th:if="${errorMessage}">
         <p th:text="${errorMessage}" style="color:red;"></p>
-    </div>
+    </div> 
+    -->
 
+    <!--
     <div th:unless="${errorMessage}">
-        <p><strong>ID:</strong> <span th:text="${voluntário.idVoluntario}"></span></p>
+    -->
+    <div>
+        <p><strong>ID User:</strong> <span th:text="${voluntário.idUser}"></span></p>
         <p><strong>Nome:</strong> <span th:text="${voluntário.nome}"></span></p>
         <p><strong>Email:</strong> <span th:text="${voluntário.email}"></span></p>
         <p><strong>Telefone:</strong> <span th:text="${voluntário.telefone}"></span></p>
         <p><strong>Função:</strong> <span th:text="${voluntário.funcao}"></span></p>
-
-        <a th:href="@{/voluntarios}">Voltar para Lista</a>
     </div>
+
+    <a th:href="@{/voluntarios}">Voltar para lista de voluntários</a>
 </body>
 </html>
