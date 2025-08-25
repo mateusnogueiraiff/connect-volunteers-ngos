@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 
-<head th:fragment="baseHead">
+<th:block th:fragment="baseHead">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="#{plataform.name}">Plataform Name</title>
-
     <link rel="stylesheet" th:href="@{/css/styleBaseHeader.css}">
     <link rel="stylesheet" th:href="@{/css/styleBaseHeader.css}" media="screen and (max-width: 580px)">
-
     <!--
     Para testar o css pelo live server
     <link rel="stylesheet" href="../static/css/styleBaseHeader.css">
     <link rel="stylesheet" href="../static/css/mobileBaseHeader.css" media="screen and (max-width: 580px)">
     -->
-</head>
+</th:block>
 
 <body>
      <header id="conteiner-header" th:fragment="baseHeaderPage">

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{baseLayout :: baseHead}">
+<head>
+    <th:block th:insert="~{baseLayout :: baseHead}"></th:block>
     <link rel="stylesheet" th:href="@{/css/styleHome.css}">
 </head>
 <body>
