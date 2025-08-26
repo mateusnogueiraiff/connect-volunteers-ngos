@@ -26,13 +26,13 @@ public class VoluntarioController {
     VoluntarioService voluntarioService;
 
     @GetMapping("/{id}")
-    public String getVoluntariosPage(@PathVariable("id") Long id, Model model) {
+    public String getVoluntariosPage(@PathVariable("id") Long id, Model model, RedirectAttributes redirectAttributes) {
 
         Voluntario voluntario = voluntarioService.findVoluntarioById(id);
 
         if (voluntario == null) {
-            model.addAttribute("errorMessage", "Voluntário não encontrado.");
-            return "voluntarios/voluntarios.html";
+            redirectAttributes.addFlashAttribute("errorMessage", "Voluntário não encontrado!");
+            return "redirect:/voluntarios";
         }
 
         model.addAttribute("voluntário", voluntario);
@@ -42,7 +42,6 @@ public class VoluntarioController {
     @GetMapping()
     public String getAllVoluntarios(Model model) {
         model.addAttribute("voluntarios", voluntarioService.findAllVoluntarios());
-        //model.addAttribute("voluntario", new Voluntario());
         return "voluntario/voluntarios.html";
     }
 
