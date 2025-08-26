@@ -7,12 +7,14 @@
 </head>
 <body>
     <div th:if="${successMessage}" class="alert alert-success" role="alert">
-        <span th:text="${successMessage}"></span>
+        <span th:text="${successMessage}" style="color: green;"></span>
     </div>
 
+    <!-- 
+    -->
     <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
         <span th:text="${errorMessage}"></span>
-    </div>
+    </div> 
 
     <h1>Lista de Voluntários</h1>
 
@@ -21,6 +23,8 @@
             <tr>
                 <th>ID User</th>
                 <th>Nome</th>
+                <th>Data de Nascimento</th>
+                <th>Idade</th>
                 <th>Email</th>
                 <th>Telefone</th>
                 <th>Função</th>
@@ -30,11 +34,16 @@
             <tr th:each="voluntario : ${voluntarios}">
                 <td th:text="${voluntario.idUser}"></td>
                 <td th:text="${voluntario.nome}"></td>
+                <td th:text="${voluntario.dataNasc}"></td>
+                <td th:text="${voluntario.idade}"></td>
                 <td th:text="${voluntario.email}"></td>
                 <td th:text="${voluntario.telefone}"></td>
                 <td th:text="${voluntario.funcao}"></td>
             </tr>
         </tbody>
     </table>
+
+    <p><a th:href="@{/voluntarios/new}">Cadastrar New Voluntário</a></p>
+    <p><a th:href="@{/}">Voltar para Home</a></p>
 </body>
 </html>

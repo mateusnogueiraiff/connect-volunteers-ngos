@@ -6,53 +6,90 @@
     <title>Document</title>
 </head>
 <body>
-    <div th:if="${successMessage}" class="alert alert-success" role="alert">
+    <!-- <div th:if="${successMessage}" class="alert alert-success" role="alert">
       <span th:text="${successMessage}"></span>
-    </div>
+    </div> -->
 
     <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
-      <span th:text="${errorMessage}"></span>
+      <span th:text="${errorMessage}" style="color: red;"></span>
     </div>
 
+    <!--Precisa add os atributos anoNasc e idade na Classe Voluntario-->
     <h1>Cadastro de Voluntário</h1>
         <form th:action="@{/voluntarios}" th:object="${voluntario}" method="post">
-            <p>
-                <label>Nome:</label>
-                <input type="text" th:field="*{nome}" required>
-                <p class="error" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></p>
-            </p>
+            <fieldset>
+                <legend>Ficha Cadastral</legend>
+                <p>
+                    <label>Nome: </label>
+                    <input type="text" placeholder="Nome Completo" th:field="*{nome}" required>
+                    <p class="error" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></p>
+                </p>
+                <p>
+                    <label for="dataNasc">Data de Nascimento: </label>
+                    <input type="date" name="dataNasc" id="dataNasc" th:field="*{dataNasc}" required oninput="calcIdade()">
+                </p>
+                <p>
+                    <label for="idade">Idade: </label>
+                    <output id="idade">0</output>
+                </p>
+                <p>
+                    <label>Telefone: </label>
+                    <input type="text" placeholder="(22)99999-9999" th:field="*{telefone}">
+                    <p class="error" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></p>
+                </p>
+            </fieldset>
+
+            <br>
+            <fieldset>
+                <legend>Credenciais</legend>
+                <p>
+                    <label>Email: </label>
+                    <input type="email" th:field="*{email}" required>
+                    <p class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+                </p>
+                <p>
+                    <label>Senha: </label>
+                    <input type="password" th:field="*{senha}" required>
+                    <p class="error" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></p>
+                </p>
+            </fieldset>
+
+            <br> 
+            <fieldset>
+                <legend>Função</legend>
+                <p>
+                    <input type="radio" name="funcao" id="funcao" value="voluntario" th:field="*{funcao}" checked required>
+                    <label for="funcao">Voluntário</label>
+                    <p class="error" th:if="${#fields.hasErrors('funcao')}" th:errors="*{funcao}"></p>
+                </p>
+            </fieldset>
 
             <p>
-                <label>Email:</label>
-                <input type="email" th:field="*{email}" required>
-                <p class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
-
+                <button type="submit">Salvar</button>
+                <button type="reset">Limpar</button>
             </p>
-
-            <p>
-                <label>Senha:</label>
-                <input type="password" th:field="*{senha}" required>
-                <p class="error" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></p>
-            </p>
-
-            <p>
-                <label>Telefone:</label>
-                <input type="text" th:field="*{telefone}">
-                <p class="error" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></p>
-            </p>
-
-            <p>
-                <label>Função:</label>
-                <select id="funcao" name="funcao" th:field="*{funcao}" required>
-                <option value="" disabled selected>Selecione</option>
-                <option value="voluntario">Voluntário</option>
-                <option value="representante">Representante</option>
-                </select><br><br>
-                <p class="error" th:if="${#fields.hasErrors('funcao')}" th:errors="*{funcao}"></p>
-            </p>
-
-            <button type="submit">Salvar</button>
-            <button type="reset">Limpar</button>
         </form>
+
+    <script>
+        function calcIdade() {
+            let dataNasc = document.getElementById("dataNasc").value;
+            if (!dataNasc) {
+                document.getElementById("idade").innerHTML = "0";
+                return;
+            }
+
+            let nasc = new Date(dataNasc);
+            let hoje = new Date();
+
+            let idade = hoje.getFullYear() - nasc.getFullYear();
+            let mes = hoje.getMonth() - nasc.getMonth();
+
+            if (mes < 0 || (mes === 0 && hoje.getDate() < nasc.getDate())) {
+                idade--; // ainda não fez aniversário esse ano
+            }
+
+            document.getElementById("idade").innerHTML = idade;
+        }
+    </script>
 </body>
 </html>

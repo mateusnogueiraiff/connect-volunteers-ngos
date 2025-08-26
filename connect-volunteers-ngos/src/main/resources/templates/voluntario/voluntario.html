@@ -8,18 +8,15 @@
 <body>
     <h1>Ficha do Voluntário</h1>
 
-    <!-- 
-    <div th:if="${errorMessage}">
+    <!-- <div th:if="${errorMessage}">
         <p th:text="${errorMessage}" style="color:red;"></p>
-    </div> 
-    -->
+    </div> -->
 
-    <!--
     <div th:unless="${errorMessage}">
-    -->
-    <div>
         <p><strong>ID User:</strong> <span th:text="${voluntário.idUser}"></span></p>
         <p><strong>Nome:</strong> <span th:text="${voluntário.nome}"></span></p>
+        <p><strong>Data de Nascimento:</strong> <span th:text="${voluntário.dataNasc}"></span></p>
+        <p><strong>Idade:</strong> <span th:text="${voluntário.idade}"></span></p>
         <p><strong>Email:</strong> <span th:text="${voluntário.email}"></span></p>
         <p><strong>Telefone:</strong> <span th:text="${voluntário.telefone}"></span></p>
         <p><strong>Função:</strong> <span th:text="${voluntário.funcao}"></span></p>
