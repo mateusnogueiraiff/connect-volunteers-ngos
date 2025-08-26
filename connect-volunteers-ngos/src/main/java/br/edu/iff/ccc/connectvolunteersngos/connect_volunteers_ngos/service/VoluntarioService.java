@@ -1,5 +1,6 @@
 package br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
@@ -14,19 +15,32 @@ public class VoluntarioService {
 
     public VoluntarioService() {
         voluntarios = new ArrayList<>();
-        voluntarios.add(new Voluntario(1L, "Voluntário 1", "teste1@voluntario.com", "123", "(11) 98989-9898", "Voluntário"));
-        voluntarios.add(new Voluntario(2L, "Voluntário 2", "teste2@voluntario.com", "321", "(22) 98989-9898", "Voluntário"));
-        voluntarios.add(new Voluntario(3L, "Voluntário 3", "teste3@voluntario.com", "000", "(33) 98989-9898", "Voluntário"));
+        LocalDate anoNasc = LocalDate.parse("2002-10-21");
+        voluntarios.add(new Voluntario(1L, "Voluntário 1", "teste1@voluntario.com", "123", "(11) 98989-9898", "Voluntário", anoNasc, 21));
+        voluntarios.add(new Voluntario(2L, "Voluntário 2", "teste2@voluntario.com", "321", "(22) 98989-9898", "Voluntário", anoNasc, 21));
+        voluntarios.add(new Voluntario(3L, "Voluntário 3", "teste3@voluntario.com", "000", "(33) 98989-9898", "Voluntário", anoNasc, 21));
     }
 
     public void saveVoluntario(Voluntario voluntario) {
         if (voluntario.getIdUser() == null) {
             voluntario.setIdUser(nextId++);
         }
+
+        if (voluntario.getDataNasc() != null) {
+            LocalDate hoje = LocalDate.now();
+            int idade = hoje.getYear() - voluntario.getDataNasc().getYear();
+            if (hoje.getDayOfYear() < voluntario.getDataNasc().getDayOfYear()) {
+                idade--;
+            }
+            voluntario.setIdade(idade);
+        }
+
         voluntarios.add(voluntario);
 
         System.out.println("ID: " + voluntario.getIdUser() +
-        " Nome: " + voluntario.getNome() + 
+        " Nome: " + voluntario.getNome() +
+        " Data de Nascimento: " + voluntario.getDataNasc() +
+        " Idade: " + voluntario.getIdade() +
         " Email: " + voluntario.getEmail() +
         " Telefone: " + voluntario.getTelefone() + 
         " Função: " + voluntario.getFuncao());
