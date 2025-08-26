@@ -2,8 +2,6 @@ package br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.us
 
 import java.time.LocalDate;
 
-import org.springframework.cglib.core.Local;
-
 import jakarta.persistence.Entity;
 
 @Entity
