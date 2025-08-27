@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginControllerView {
 
     @GetMapping("/login")
-    public String mexibirLogin() {
+    public String exibirLogin() {
         return "login-cadastro/login";
     }
 
