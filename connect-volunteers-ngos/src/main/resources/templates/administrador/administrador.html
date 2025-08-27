@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Administrador</title>
+</head>
+<body>
+    <h1>Ficha do Administrador</h1>
+
+    <div th:unless="${errorMessage}">
+        <p><strong>ID User:</strong> <span th:text="${administrador.idUser}"></span></p>
+        <p><strong>Nome:</strong> <span th:text="${administrador.nome}"></span></p>
+        <p><strong>Email:</strong> <span th:text="${administrador.email}"></span></p>
+        <p><strong>Telefone:</strong> <span th:text="${administrador.telefone}"></span></p>
+        <p><strong>Função:</strong> <span th:text="${administrador.funcao}"></span></p>
+    </div>
+
+    <a th:href="@{/administradores}">Voltar para lista de administradores</a>
+</body>
+</html>

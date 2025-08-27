@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <div th:if="${successMessage}" class="alert alert-success" role="alert">
+        <span th:text="${successMessage}" style="color: green;"></span>
+    </div>
+
+    <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+        <span th:text="${errorMessage}"></span>
+    </div> 
+
+    <h1>Lista de Administradores</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID User</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Função</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="administrador : ${administradores}">
+                <td th:text="${administrador.idUser}"></td>
+                <td th:text="${administrador.nome}"></td>
+                <td th:text="${administrador.email}"></td>
+                <td th:text="${administrador.telefone}"></td>
+                <td th:text="${administrador.funcao}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p><a th:href="@{/administradores/new}">Cadastrar New Administrador</a></p>
+    <p><a th:href="@{/}">Voltar para Home</a></p>
+</body>
+</html>
