@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:insert="~{baseLayout :: baseHead}"></th:block>
+    <th:block th:insert="~{base/baseLayout :: baseHead}"></th:block>
     <!--Colocar link para o css dessa pag-->
 </head>
 <body>
-    <header th:replace="~{baseLayout :: baseHeaderPage}"></header>
+    <header th:replace="~{base/baseLayout :: baseHeaderPage}"></header>
 
     <main>
         <h1 th:text="#{plataform.name}">Plataform Name</h1>
@@ -28,6 +28,6 @@
         <p>Não tem uma conta? <a th:href="@{/cadastro}">Cadastre-se</a></p>
     </main>
 
-    <footer th:replace="~{baseLayout :: baseFooterPage}"></footer>
+    <footer th:replace="~{base/baseLayout :: baseFooterPage}"></footer>
 </body>
 </html>

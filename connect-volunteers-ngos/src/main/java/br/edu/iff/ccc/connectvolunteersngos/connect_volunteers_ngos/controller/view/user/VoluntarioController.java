@@ -36,19 +36,19 @@ public class VoluntarioController {
         }
 
         model.addAttribute("voluntário", voluntario);
-        return "voluntario/voluntario.html";
+        return "user/voluntario/voluntario.html";
     }
 
     @GetMapping()
     public String getAllVoluntarios(Model model) {
         model.addAttribute("voluntarios", voluntarioService.findAllVoluntarios());
-        return "voluntario/voluntarios.html";
+        return "user/voluntario/voluntarios.html";
     }
 
     @GetMapping("/new")
     public String createNewVoluntario(Model model) {
         model.addAttribute("voluntario", new Voluntario());
-        return "voluntario/cadastro-voluntario.html";
+        return "user/voluntario/cadastro-voluntario.html";
     }
     
 
@@ -56,7 +56,7 @@ public class VoluntarioController {
     public String saveVoluntario(@Valid Voluntario voluntario, BindingResult error, Model model, RedirectAttributes redirectAttributes) {
         if (error.hasErrors()) {
             model.addAttribute("errorMessage", "Erro ao salvar o voluntário.");
-            return "voluntario/cadastro-voluntario.html";
+            return "user/voluntario/cadastro-voluntario.html";
         }
 
         voluntarioService.saveVoluntario(voluntario);

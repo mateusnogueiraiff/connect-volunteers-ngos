@@ -42,20 +42,20 @@ public class RepresentanteController {
         }
 
         model.addAttribute("representante", representante);
-        return "representante/representante.html";
+        return "user/representante/representante.html";
     }
 
     @GetMapping()
     public String getAllRepresentantes(Model model) {
         model.addAttribute("representantes", representanteService.findAllRepresentantes());
-        return "representante/representantes.html";
+        return "user/representante/representantes.html";
     }
 
     @GetMapping("/new")
     public String createNewRepresentante(Model model) {
         model.addAttribute("representante", new Representante());
         model.addAttribute("ongs", ongService.findAllOngs()); //enviando a lista de ONGs para o select
-        return "representante/cadastro-representante.html";
+        return "user/representante/cadastro-representante.html";
     }
 
     @PostMapping()
@@ -63,7 +63,7 @@ public class RepresentanteController {
         if (error.hasErrors()) {
             model.addAttribute("errorMessage", "Erro ao salvar o representante.");
             model.addAttribute("ongs", ongService.findAllOngs());
-            return "representante/cadastro-representante.html";
+            return "user/representante/cadastro-representante.html";
         }
 
         if ("existente".equals(ongOption)) {
