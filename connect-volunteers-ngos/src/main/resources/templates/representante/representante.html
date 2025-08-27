@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Representante</title>
+</head>
+<body>
+    <h1>Ficha do Representante</h1>
+
+    <!-- <div th:if="${errorMessage}">
+        <p th:text="${errorMessage}" style="color:red;"></p>
+    </div> -->
+
+    <div th:unless="${errorMessage}">
+        <p><strong>ID User:</strong> <span th:text="${representante.idUser}"></span></p>
+        <p><strong>Nome:</strong> <span th:text="${representante.nome}"></span></p>
+        <p><strong>Email:</strong> <span th:text="${representante.email}"></span></p>
+        <p><strong>Telefone:</strong> <span th:text="${representante.telefone}"></span></p>
+        <p><strong>Função:</strong> <span th:text="${representante.funcao}"></span></p>
+        <p><strong>ONG:</strong> <span th:text="${representante.ong.nome}"></span></p>
+    </div>
+
+    <a th:href="@{/representantes}">Voltar para lista de Representantes</a>
+</body>
+</html>

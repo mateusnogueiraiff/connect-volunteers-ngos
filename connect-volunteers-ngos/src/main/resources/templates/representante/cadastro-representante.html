@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <div th:if="${successMessage}" class="alert alert-success" role="alert">
+      <span th:text="${successMessage}"></span>
+    </div> -->
+
+    <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+      <span th:text="${errorMessage}" style="color: red;"></span>
+    </div>
+
+    <h1>Cadastro de Voluntário</h1>
+        <form th:action="@{/representantes}" th:object="${representante}" method="post">
+            <fieldset>
+                <legend>Ficha Cadastral</legend>
+                <p>
+                    <label>Nome: </label>
+                    <input type="text" placeholder="Nome Completo" th:field="*{nome}" required>
+                    <p class="error" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></p>
+                </p>
+                <p>
+                    <label>Telefone: </label>
+                    <input type="text" placeholder="(22)99999-9999" th:field="*{telefone}">
+                    <p class="error" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></p>
+                </p>
+            </fieldset>
+            <br>
+
+            <fieldset>
+                <legend>ONG</legend>
+
+                <p>
+                    <label>Você deseja:</label><br>
+                    <input type="radio" name="ongOption" value="existente" checked onclick="toggleOngFields()"> Selecionar ONG existente
+                    <input type="radio" name="ongOption" value="nova" onclick="toggleOngFields()"> Cadastrar nova ONG
+                </p>
+
+                <div id="ongExistente" style="display: block;">
+                    <p>
+                        <label>ONG existente:</label>
+                        <select th:field="*{ong.id}">
+                            <option value="" disabled selected>Selecione uma ONG</option>
+                            <option th:each="ong : ${ongs}" th:value="${ong.id}" th:text="${ong.nome}"></option>
+                        </select>
+                    </p>
+                </div>
+
+                <div id="ongNova" style="display: none;">
+                    <p>
+                        <label>Nome da ONG:</label>
+                        <input type="text" th:field="*{ong.nome}">
+                    </p>
+                    <p>
+                        <label>CNPJ:</label>
+                        <input type="text" th:field="*{ong.cnpj}">
+                    </p>
+                    <p>
+                        <label>Descrição:</label>
+                        <input type="text" th:field="*{ong.descricao}">
+                    </p>
+                    <p>
+                        <label>Telefone:</label>
+                        <input type="text" th:field="*{ong.telefone}">
+                    </p>
+                    <p>
+                        <label>Email:</label>
+                        <input type="email" th:field="*{ong.email}">
+                    </p>
+                </div>
+            </fieldset>
+
+            <br>
+            <fieldset>
+                <legend>Credenciais</legend>
+                <p>
+                    <label>Email: </label>
+                    <input type="email" th:field="*{email}" required>
+                    <p class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+                </p>
+                <p>
+                    <label>Senha: </label>
+                    <input type="password" th:field="*{senha}" required>
+                    <p class="error" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></p>
+                </p>
+            </fieldset>
+
+            <br> 
+            <fieldset>
+                <legend>Função</legend>
+                <p>
+                    <input type="radio" name="funcao" id="funcao" value="representante" th:field="*{funcao}" checked required>
+                    <label for="funcao">Representante</label>
+                    <p class="error" th:if="${#fields.hasErrors('funcao')}" th:errors="*{funcao}"></p>
+                </p>
+            </fieldset>
+
+            <p>
+                <button type="submit">Salvar</button>
+                <button type="reset">Limpar</button>
+            </p>
+        </form>
+
+    <script>
+        function toggleOngFields() {
+            const option = document.querySelector('input[name="ongOption"]:checked').value;
+            document.getElementById("ongExistente").style.display = option === "existente" ? "block" : "none";
+            document.getElementById("ongNova").style.display = option === "nova" ? "block" : "none";
+        }
+    </script>
+</body>
+</html>
