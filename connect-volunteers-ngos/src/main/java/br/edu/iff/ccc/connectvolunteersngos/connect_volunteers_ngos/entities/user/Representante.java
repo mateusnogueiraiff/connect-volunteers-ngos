@@ -1,28 +1,28 @@
 package br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.user;
 
+import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.Ong;
 import jakarta.persistence.Entity;
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Representante extends Usuario {
 
-    @NotNull
-    private int idRepresentante;
+    @ManyToOne // vários representantes para uma ONG
+    private Ong ong;
 
     public Representante(){
 
     }
 
-    public Representante(int idRepresentante, Long id, String nome, String email, String senha, String telefone, String funcao) {
+    public Representante(Long id, String nome, String email, String senha, String telefone, String funcao, Ong ong) {
         super(id, nome, email, senha, telefone, funcao);
-        this.idRepresentante = idRepresentante;
+        this.ong = ong;
     }
 
-    public int getIdRepresentante() {
-        return idRepresentante;
+    public Ong getOng() {
+        return ong;
     }
-    public void setIdRepresentante(int idRepresentante) {
-        this.idRepresentante = idRepresentante;
+    public void setOng(Ong ong) {
+        this.ong = ong;
     }
 }
-
