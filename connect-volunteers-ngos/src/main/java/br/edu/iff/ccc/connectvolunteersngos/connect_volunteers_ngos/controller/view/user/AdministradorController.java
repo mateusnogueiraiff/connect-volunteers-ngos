@@ -7,8 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.user.Administrador;
-
-import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.service.AdministradorService;
+import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.service.user.AdministradorService;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;

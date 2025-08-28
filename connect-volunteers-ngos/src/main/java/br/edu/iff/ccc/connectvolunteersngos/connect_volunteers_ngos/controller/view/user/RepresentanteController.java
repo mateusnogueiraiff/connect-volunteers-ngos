@@ -3,7 +3,7 @@ package br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.controller.
 import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.Ong;
 import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.user.Representante;
 import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.service.OngService;
-import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.service.RepresentanteService;
+import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.service.user.RepresentanteService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

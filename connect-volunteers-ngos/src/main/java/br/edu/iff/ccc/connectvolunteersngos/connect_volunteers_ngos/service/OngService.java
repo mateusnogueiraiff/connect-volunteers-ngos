@@ -28,4 +28,17 @@ public class OngService {
         ongs.add(ong);
         return ong;
     }
+
+    public Ong findById(Long id) {
+        if (id == null) {
+            return null;
+        }
+
+        for (Ong ong : ongs) {
+            if (ong.getId().equals(id)) {
+                return ong;
+            }
+        }
+        return null;
+    }
 }
