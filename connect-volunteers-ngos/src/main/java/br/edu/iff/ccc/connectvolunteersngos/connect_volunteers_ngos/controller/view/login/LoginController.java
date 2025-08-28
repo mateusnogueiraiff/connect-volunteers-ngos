@@ -19,7 +19,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String showLoginPage(Model model) {
-        return "login-cadastro/login.html";
+        return "login/login.html";
     }
 
     @PostMapping("/login")
@@ -28,7 +28,7 @@ public class LoginController {
 
         if (usuario == null) {
             model.addAttribute("errorMessage", "Email ou senha inválidos!");
-            return "login-cadastro/login.html";
+            return "login/login.html";
         }
 
         //verifica se o objeto é do tipo Voluntario ou Representante
@@ -42,7 +42,7 @@ public class LoginController {
 
         // fallback
         model.addAttribute("errorMessage", "Erro inesperado!");
-        return "login-cadastro/login.html";
+        return "login/login.html";
     }
 
     @GetMapping("/logout")
