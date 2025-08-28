@@ -15,9 +15,9 @@ public class AdministradorService {
     public AdministradorService() {
         administradores = new ArrayList<>();
 
-        administradores.add(new Administrador(1L, "administrador1 1", "teste1@administrador.com", "123", "(22) 98989-9898", "administrador"));
+        administradores.add(new Administrador(1L, "administrador1", "teste1@administrador.com", "123", "(22) 98989-9898", "administrador"));
 
-        administradores.add(new Administrador(2L, "administrador2 1", "teste2@administrador.com", "321", "(22) 98989-4444", "administrador"));
+        administradores.add(new Administrador(2L, "administrador2", "teste2@administrador.com", "321", "(22) 98989-4444", "administrador"));
 
     }
 
