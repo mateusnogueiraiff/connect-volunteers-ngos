@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Vaga</title>
+</head>
+<body>
+    <h1>Cadastrar Nova Vaga</h1>
+
+    <div th:if="${errorMessage}" style="color: red;" th:text="${errorMessage}"></div>
+
+    <form th:action="@{/vagas}" th:object="${vaga}" method="post">
+        <p>
+            <label>Nome: </label>
+            <input type="text" th:field="*{nome}" required>
+        </p>
+        <p>
+            <label>Descrição: </label>
+            <textarea th:field="*{descricao}" required></textarea>
+        </p>
+        <p>
+            <label>Requisitos: </label>
+            <input type="text" th:field="*{requisitos}">
+        </p>
+        <p>
+            <label>Local: </label>
+            <input type="text" th:field="*{local}">
+        </p>
+        <p>
+            <label>Data/Horário: </label>
+            <input type="text" th:field="*{dataHorario}">
+        </p>
+        <p>
+            <label>Quantidade de Vagas: </label>
+            <input type="number" th:field="*{quantidadeDeVagas}">
+        </p>
+        <p>
+            <label>ONG: </label>
+            <select th:field="*{ong.id}" required>
+                <option value="" disabled selected>Selecione uma ONG</option>
+                <option th:each="ong : ${ongs}" th:value="${ong.id}" th:text="${ong.nome}"></option>
+            </select>
+        </p>
+
+        <p>
+            <button type="submit">Salvar</button>
+            <button type="reset">Limpar</button>
+        </p>
+    </form>
+</body>
+</html>

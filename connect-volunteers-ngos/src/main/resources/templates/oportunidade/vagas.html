@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Vagas</title>
+</head>
+<body>
+    <h1>Lista de Vagas</h1>
+
+    <div th:if="${successMessage}" class="alert alert-success">
+        <span th:text="${successMessage}"></span>
+    </div>
+    <div th:if="${errorMessage}" class="alert alert-danger">
+        <span th:text="${errorMessage}"></span>
+    </div>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>ONG</th>
+                <th>Descrição</th>
+                <th>Requisitos</th>
+                <th>Local</th>
+                <th>Data/Horário</th>
+                <th>Quantidade de Vagas</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="vaga : ${vagas}">
+                <td th:text="${vaga.id}">ID</td>
+                <td th:text="${vaga.nome}">Nome da Vaga</td>
+                <td th:text="${vaga.ong.nome}">Nome da ONG</td>
+                <td th:text="${vaga.descricao}">Descrição</td>
+                <td th:text="${vaga.requisitos}">Requisitos</td>
+                <td th:text="${vaga.local}">Local</td>
+                <td th:text="${vaga.dataHorario}">Data/Horário</td>
+                <td th:text="${vaga.quantidadeDeVagas}">Quantidade de Vagas</td>
+                <td>
+                    <a th:href="@{'/vagas/' + ${vaga.id}}">Ver detalhes</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <a th:href="@{/vagas/new}">Cadastrar Nova Vaga</a>
+</body>
+</html>
