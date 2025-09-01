@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="#{plataform.name}">Plataform Name</title>
+
+    <link rel="stylesheet" th:href="@{/css/styleHomeUsers.css}">
 </head>
 <body>
-    <!--logout bem sucedido-->
-      <div th:if="${successMessage}">
-        <p style="color: green;" th:text="${successMessage}"></p>
-    </div>
+    <!-- Mensagens de feedback -->
+    <div th:if="${successMessage}" class="alert alert-success" th:text="${successMessage}"></div>
+    <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
+    <div th:if="${infoMessage}" class="alert alert-info" th:text="${infoMessage}"></div>
 
     <h1>Bem-vindo, Administrador!</h1>
     <p>Aqui você poderá administrar vagas</p>
 
-    <a th:href="@{/logout}">Sair</a>
+    <nav>
+        <!-- Colocar outros redirecionamentos dps -->
+        <li><a th:href="@{/logout}">Sair</a></li>
+    </nav>
 </body>
 </html>
