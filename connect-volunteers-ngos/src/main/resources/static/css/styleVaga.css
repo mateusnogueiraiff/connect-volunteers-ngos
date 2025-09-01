@@ -1,0 +1,126 @@
+@charset "UTF-8";
+
+/* === CSS PARA DETALHES DA VAGA === */
+
+/* Paleta de cores */
+:root {
+    --green-dark: #2e7d32;
+    --green-medium: #43a047;
+    --green-light: #c8e6c9;
+    --white: #ffffff;
+    --gray-light: #f5f5f5;
+    --gray-dark: #444444;
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--gray-light);
+    color: var(--gray-dark);
+    padding: 20px;
+}
+
+/* Container central */
+.container {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 900px;
+    margin: 0 auto 20px auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Títulos */
+h1 {
+    color: var(--green-dark);
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 2em;
+}
+
+h3 {
+    color: var(--green-medium);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Parágrafos */
+p {
+    margin-bottom: 10px;
+}
+
+p strong {
+    color: var(--green-dark);
+}
+
+/* Separador */
+hr {
+    border: 1px solid var(--green-light);
+    margin: 20px 0;
+}
+
+/* Botões */
+button, .btn-link {
+    background-color: var(--green-dark);
+    color: var(--white);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 10px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+button:hover, .btn-link:hover {
+    background-color: var(--green-medium);
+}
+
+/* Links simples */
+a {
+    text-decoration: none;
+    color: var(--green-dark);
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+a:hover {
+    color: var(--green-medium);
+}
+
+/* Formulário de inscrição */
+form {
+    display: inline-block;
+}
+
+/* Responsividade simples */
+@media screen and (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    h3 {
+        font-size: 1.2em;
+    }
+
+    button, .btn-link {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
