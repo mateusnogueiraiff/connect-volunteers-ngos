@@ -18,17 +18,15 @@
         <hr>
 
         <!-- Botão para voluntário se inscrever -->
-        <div th:if="${usuarioLogado instanceof T(br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.user.Voluntario)}">
+        <div th:if="${T(br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.user.Voluntario).isInstance(usuarioLogado)}">
             <form th:action="@{'/inscricoes/vaga/' + ${vaga.id}}" method="post">
                 <button type="submit">Inscrever-se</button>
             </form>
         </div>
 
         <!-- Botão para representante visualizar inscrições -->
-        <div th:if="${usuarioLogado instanceof T(br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.user.Representante)}">
-            <a th:href="@{'/inscricoes/vaga/' + ${vaga.id}}">
-                <button>Ver inscrições</button>
-            </a>
+        <div th:if="${T(br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.user.Representante).isInstance(usuarioLogado)}">
+            <a th:href="@{'/inscricoes/vaga/' + ${vaga.id}}">Ver inscrições</a>
         </div>
 
         <br>

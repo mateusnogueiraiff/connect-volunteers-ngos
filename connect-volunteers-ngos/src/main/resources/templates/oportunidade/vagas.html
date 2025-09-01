@@ -45,7 +45,13 @@
         </tbody>
     </table>
 
-    <br>
-    <a th:href="@{/vagas/new}">Cadastrar Nova Vaga</a>
+    <div th:if="${T(br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.user.Voluntario).isInstance(usuarioLogado)}">
+        <a th:href="@{'/home-voluntario'}">Voltar para Home</a>
+    </div>
+
+    <div th:if="${T(br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.user.Representante).isInstance(usuarioLogado)}">
+        <a th:href="@{'/vagas/new'}">Cadastrar nova vaga</a>
+        <a th:href="@{'/home-representante'}">Voltar para Home</a>
+    </div>
 </body>
 </html>
