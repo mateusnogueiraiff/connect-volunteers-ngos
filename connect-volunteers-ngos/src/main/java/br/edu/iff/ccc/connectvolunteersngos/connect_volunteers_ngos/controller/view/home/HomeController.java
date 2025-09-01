@@ -15,4 +15,9 @@ public class HomeController {
     public String homeRepresentante() {
         return "home/home-representante.html";
     }
+
+    @GetMapping("/home-administrador")
+    public String homeAdministrador() {
+        return "home/home-administrador.html";
+    }
 }

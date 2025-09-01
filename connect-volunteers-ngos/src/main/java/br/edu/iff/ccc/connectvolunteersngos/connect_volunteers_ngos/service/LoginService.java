@@ -15,6 +15,9 @@ public class LoginService {
     @Autowired
     private RepresentanteService representanteService;
 
+    @Autowired
+    private AdministradorService administradorService;
+
     public Usuario autenticar(String email, String senha) {
 
         for (Voluntario v : voluntarioService.findAllVoluntarios()) {
@@ -26,6 +29,12 @@ public class LoginService {
         for (Representante r : representanteService.findAllRepresentantes()) {
             if (r.getEmail().equals(email) && r.getSenha().equals(senha)) {
                 return r;
+            }
+        }
+
+        for (Administrador a : administradorService.findAllAdministradores()) {
+            if (a.getEmail().equals(email) && a.getSenha().equals(senha)) {
+                return a;
             }
         }
 
