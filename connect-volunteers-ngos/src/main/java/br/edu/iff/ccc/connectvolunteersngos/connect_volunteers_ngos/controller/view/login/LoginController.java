@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import jakarta.servlet.http.HttpSession;
 
 import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.user.*;
 import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.service.LoginService;
@@ -23,7 +24,8 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String doLogin(@RequestParam String email, @RequestParam String senha, Model model, RedirectAttributes redirectAttributes) {
+    public String doLogin(@RequestParam String email, @RequestParam String senha, Model model, RedirectAttributes redirectAttributes, HttpSession session) {
+
         Usuario usuario = loginService.autenticar(email, senha);
 
         if (usuario == null) {
@@ -31,15 +33,14 @@ public class LoginController {
             return "login/login.html";
         }
 
-        /*verifica se o objeto é do tipo Voluntario ou Representante
-        if (usuario instanceof Voluntario) {
-            redirectAttributes.addFlashAttribute("successMessage", "Login realizado com sucesso!");
-            return "redirect:/home-voluntario";
-        } else if (usuario instanceof Representante) {
-            redirectAttributes.addFlashAttribute("successMessage", "Login realizado com sucesso!");
-            return "redirect:/home-representante";
-        }*/
+        /*verifica se o objeto é do tipo Voluntario ou Representante*/
+        // salva na sessão
+        session.setAttribute("usuarioLogado", usuario);
 
+        redirectAttributes.addFlashAttribute("successMessage", "Login realizado com sucesso!");
+
+
+        /* forma sem o httpSession
         // verifica se o objeto é do tipo Voluntario, Representante ou Administrador
         if (usuario instanceof Voluntario) {
             redirectAttributes.addFlashAttribute("successMessage", "Login realizado com sucesso!");
@@ -51,6 +52,7 @@ public class LoginController {
             redirectAttributes.addFlashAttribute("successMessage", "Login realizado com sucesso!");
             return "redirect:/home-administrador";
         }
+        */
 
 
         // fallback
@@ -59,8 +61,8 @@ public class LoginController {
     }
 
     @GetMapping("/logout")
-    public String logout(RedirectAttributes redirectAttributes) {
-        // aqui futuramente podemos limpar a sessão se usarmos HttpSession
+    public String logout(HttpSession session, RedirectAttributes redirectAttributes) {
+        session.invalidate();
         redirectAttributes.addFlashAttribute("successMessage", "Logout realizado com sucesso!");
         return "redirect:/login";
     }

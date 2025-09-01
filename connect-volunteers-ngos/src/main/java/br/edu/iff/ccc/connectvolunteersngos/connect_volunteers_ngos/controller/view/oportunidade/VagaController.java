@@ -14,6 +14,7 @@ import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.Ong
 import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.oportunidade.Vaga;
 import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.service.oportunidade.VagaService;
 import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.service.OngService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 @Controller
@@ -33,14 +34,18 @@ public class VagaController {
     }
 
     @GetMapping("/{id}")
-    public String getVagaPage(@PathVariable("id") Long id, Model model, RedirectAttributes redirectAttributes) {
-        Vaga vaga = vagaService.findById(id);
+    public String getVagaPage(@PathVariable("id") Long id, Model model, RedirectAttributes redirectAttributes, HttpSession session) {
+        Vaga vaga = vagaService.findVagaById(id);
 
         if (vaga == null) {
             redirectAttributes.addFlashAttribute("errorMessage", "Vaga não encontrada!");
             return "redirect:/vagas";
         }
 
+        // recupera usuário da sessão e envia para a view
+        Object usuarioLogado = session.getAttribute("usuarioLogado");
+        model.addAttribute("usuarioLogado", usuarioLogado);
+        
         model.addAttribute("vaga", vaga);
         return "oportunidade/vaga.html";
     }

@@ -1,18 +1,30 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home Voluntário</title>
+    <title>Home - Voluntário</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <!--logout bem sucedido-->
-    <div th:if="${successMessage}">
-        <p style="color: green;" th:text="${successMessage}"></p>
+    <div class="container">
+        <!-- Mensagens de feedback -->
+        <div th:if="${successMessage}" class="alert alert-success" th:text="${successMessage}"></div>
+        <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
+        <div th:if="${infoMessage}" class="alert alert-info" th:text="${infoMessage}"></div>
+
+        <h1>Bem-vindo, <span th:text="${usuario.nome}">Voluntário</span>!</h1>
+        <p><strong>Email:</strong> <span th:text="${usuario.email}"></span></p>
+        <p><strong>Telefone:</strong> <span th:text="${usuario.telefone}"></span></p>
+
+        <hr>
+
+        <nav>
+            <ul>
+                <li><a th:href="@{/vagas}">Ver vagas disponíveis</a></li>
+                <li><a th:href="@{'/inscricoes/voluntario/' + ${usuario.idUser}}">Minhas inscrições</a></li>
+                <li><a th:href="@{/logout}">Logout</a></li>
+            </ul>
+        </nav>
     </div>
-
-    <h1>Bem-vindo, Voluntário!</h1>
-    <p>Aqui você poderá visualizar vagas e cadastrar suas horas.</p>
-
-    <a th:href="@{/logout}">Sair</a>
 </body>
 </html>

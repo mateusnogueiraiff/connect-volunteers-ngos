@@ -21,7 +21,7 @@ public class VagaService {
         return vagas;
     }
 
-    public Vaga findById(Long id) {
+    public Vaga findVagaById(Long id) {
         if (id == null) {
             return null;
         }

@@ -1,26 +1,38 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Detalhes da Vaga</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <h1 th:text="${vaga.nome}">Nome da Vaga</h1>
-    <p><strong>ONG:</strong> <span th:text="${vaga.ong.nome}">Nome da ONG</span></p>
-    <p><strong>Descrição:</strong> <span th:text="${vaga.descricao}">Descrição aqui</span></p>
-    <p><strong>Requisitos:</strong> <span th:text="${vaga.requisitos}">Requisitos aqui</span></p>
-    <p><strong>Local:</strong> <span th:text="${vaga.local}">Local aqui</span></p>
-    <p><strong>Data/Horário:</strong> <span th:text="${vaga.dataHorario}">Data aqui</span></p>
-    <p><strong>Quantidade de Vagas:</strong> <span th:text="${vaga.quantidadeDeVagas}">0</span></p>
+    <div class="container">
+        <h1 th:text="${vaga.nome}"></h1>
+        <h3>ONG: <span th:text="${vaga.ong.nome}"></span></h3>
+        <p><strong>Descrição:</strong> <span th:text="${vaga.descricao}"></span></p>
+        <p><strong>Requisitos:</strong> <span th:text="${vaga.requisitos}"></span></p>
+        <p><strong>Local:</strong> <span th:text="${vaga.local}"></span></p>
+        <p><strong>Data/Horário:</strong> <span th:text="${vaga.dataHorario}"></span></p>
+        <p><strong>Quantidade de Vagas:</strong> <span th:text="${vaga.quantidadeDeVagas}"></span></p>
 
-    <br>
+        <hr>
 
-    <!-- Botão de inscrição (futuro fluxo do voluntário) -->
-    <form th:action="@{'/vagas/' + ${vaga.id} + '/inscricao'}" method="post">
-        <button type="submit">Quero me inscrever</button>
-    </form>
+        <!-- Botão para voluntário se inscrever -->
+        <div th:if="${usuarioLogado instanceof T(br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.user.Voluntario)}">
+            <form th:action="@{'/inscricoes/vaga/' + ${vaga.id}}" method="post">
+                <button type="submit">Inscrever-se</button>
+            </form>
+        </div>
 
-    <br>
-    <a th:href="@{/vagas}">Voltar para lista de vagas</a>
+        <!-- Botão para representante visualizar inscrições -->
+        <div th:if="${usuarioLogado instanceof T(br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.user.Representante)}">
+            <a th:href="@{'/inscricoes/vaga/' + ${vaga.id}}">
+                <button>Ver inscrições</button>
+            </a>
+        </div>
+
+        <br>
+        <a th:href="@{/vagas}">Voltar para lista de vagas</a>
+    </div>
 </body>
 </html>

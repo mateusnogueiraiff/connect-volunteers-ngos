@@ -1,19 +1,26 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="#{plataform.name}">Plataform Name</title>
+    <title>Home Representante</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <!--logout bem sucedido-->
-    <div th:if="${successMessage}">
-        <p style="color: green;" th:text="${successMessage}"></p>
-    </div>
-
     <h1>Bem-vindo, Representante!</h1>
-    <p>Aqui você poderá cadastrar vagas</p>
 
-    <a th:href="@{/logout}">Sair</a>
+    <!-- Mensagens de feedback -->
+    <div th:if="${successMessage}" class="alert alert-success" th:text="${successMessage}"></div>
+    <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
+    <div th:if="${infoMessage}" class="alert alert-info" th:text="${infoMessage}"></div>
+
+    <nav>
+        <ul>
+            <li><a th:href="@{/vagas}">Ver todas as vagas</a></li>
+            <li><a th:href="@{/vagas/new}">Cadastrar nova vaga</a></li>
+        </ul>
+    </nav>
+
+    <br>
+    <a th:href="@{/logout}">Logout</a>
 </body>
 </html>
