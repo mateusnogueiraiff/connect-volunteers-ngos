@@ -4,48 +4,187 @@
     <th:block th:insert="~{base/baseLayout :: baseHead}"></th:block>
     <!--Colocar link para o css dessa pag-->
     <style>
-        .alert { padding: 10px; border-radius: 4px; margin-bottom: 15px; }
-        .alert-success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-        .alert-error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
-        .form-container { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 6px; }
-        label { display: block; margin-top: 10px; }
-        input { width: 100%; padding: 8px; margin-top: 5px; }
-        button { margin-top: 15px; width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
-        button:hover { background-color: #0056b3; }
+        /* Container geral do main */
+        main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            padding: 2rem;
+        }
+
+        /* Box de login */
+        #box-login {
+            background-color: #e0e5ec;
+            padding: 2rem 3rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            max-width: 400px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        #box-login:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.35);
+        }
+
+        /* Títulos */
+        #box-login h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #007bff;
+            font-family: 'Arial Black', Arial, sans-serif;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        #box-login h2 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: #0056b3;
+            font-family: Arial, sans-serif;
+            text-shadow: 0.5px 0.5px 1px rgba(0,0,0,0.2);
+        }
+
+        /* Inputs e labels organizados */
+        #box-login form p {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        #box-login form label {
+            width: 30%;
+            text-align: right;
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+
+        #box-login form input[type="email"],
+        #box-login form input[type="password"] {
+            width: 65%;
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        /* Espaço entre último input e botão */
+        #box-login form p:last-of-type {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Botão */
+        #box-login button {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 0.5rem;
+        }
+
+        #box-login button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        /* Mensagens de alerta */
+        .alert {
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Link de cadastro dentro do box-login */
+        #box-login p a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        #box-login p a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsividade */
+        @media (max-width: 480px) {
+            #box-login {
+                padding: 1.5rem 1.5rem;
+            }
+
+            #box-login form p {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            #box-login form label,
+            #box-login form input {
+                width: 100%;
+                text-align: left;
+                margin: 0 0 0.5rem 0;
+            }
+        }
+
     </style>
 </head>
 <body>
     <header th:replace="~{base/baseLayout :: baseHeaderPage}"></header>
 
     <main>
-        <h1 th:text="#{plataform.name}">Plataform Name</h1>
-
-        <h2>Login</h2>
-        
         <!--logout bem sucedido-->
         <div th:if="${successMessage}" class="alert alert-success" th:text="${successMessage}"></div>
-
+        
         <!--erro ao efetuar o login-->
         <div th:if="${errorMessage}" class="alert alert-error" th:text="${errorMessage}"></div>
+        
+        <section id="box-login">
+            <h1 th:text="#{plataform.name}">Plataform Name</h1>
+            <h2>Login</h2>
+            <form action="/login" method="post">
+                <p>
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+                </p>
+                <p>
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" required>
+                </p>
+                <p>
+                    <button type="submit">Entrar</button>
+                </p>
+            </form>
 
-        <form action="/login" method="post">
-            <p>
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" required>
-            </p>
-            <p>
-                <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha" required>
-            </p>
-            <p>
-                <button type="submit">Entrar</button>
-            </p>
-        </form>
+            <p>Não tem uma conta? Cadastre-se como <a th:href="@{/voluntarios/new}">Voluntario</a> ou como <a th:href="@{/representantes/new}">Representante</a></p>
+        </section>
 
-        <!--
-            precisa mudar essa rota de cadastro, essa abaixo é antes da implementação do cadastro separado para volunt e represent
-            <p>Não tem uma conta? <a th:href="@{/cadastro}">Cadastre-se</a></p>
-        -->
     </main>
 
     <footer th:replace="~{base/baseLayout :: baseFooterPage}"></footer>
