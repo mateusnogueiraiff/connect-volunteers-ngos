@@ -10,10 +10,6 @@
 <body>
     <h1>Ficha do Voluntário</h1>
 
-    <!-- <div th:if="${errorMessage}">
-        <p th:text="${errorMessage}" style="color:red;"></p>
-    </div> -->
-
     <div th:unless="${errorMessage}">
         <p><strong>ID User:</strong> <span th:text="${voluntário.idUser}"></span></p>
         <p><strong>Nome:</strong> <span th:text="${voluntário.nome}"></span></p>
