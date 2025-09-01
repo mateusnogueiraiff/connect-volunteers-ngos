@@ -40,7 +40,6 @@ public class LoginController {
         redirectAttributes.addFlashAttribute("successMessage", "Login realizado com sucesso!");
 
 
-        /* forma sem o httpSession
         // verifica se o objeto é do tipo Voluntario, Representante ou Administrador
         if (usuario instanceof Voluntario) {
             redirectAttributes.addFlashAttribute("successMessage", "Login realizado com sucesso!");
@@ -48,12 +47,10 @@ public class LoginController {
         } else if (usuario instanceof Representante) {
             redirectAttributes.addFlashAttribute("successMessage", "Login realizado com sucesso!");
             return "redirect:/home-representante";
-        } else if (usuario instanceof Administrador) {
-            redirectAttributes.addFlashAttribute("successMessage", "Login realizado com sucesso!");
-            return "redirect:/home-administrador";
-        }
-        */
-
+            } else if (usuario instanceof Administrador) {
+                redirectAttributes.addFlashAttribute("successMessage", "Login realizado com sucesso!");
+                return "redirect:/home-administrador";
+                }
 
         // fallback
         model.addAttribute("errorMessage", "Erro inesperado!");

@@ -28,8 +28,12 @@ public class VagaController {
     private OngService ongService;
 
     @GetMapping
-    public String listarVagas(Model model) {
+    public String listarVagas(Model model, HttpSession session) {
         model.addAttribute("vagas", vagaService.findAllVagas());
+
+        Object usuarioLogado = session.getAttribute("usuarioLogado");
+        model.addAttribute("usuarioLogado", usuarioLogado);
+
         return "oportunidade/vagas.html";
     }
 

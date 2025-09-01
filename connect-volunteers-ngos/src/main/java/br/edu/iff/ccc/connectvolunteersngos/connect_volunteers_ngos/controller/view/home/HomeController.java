@@ -32,7 +32,12 @@ public class HomeController {
     }
 
     @GetMapping("/home-administrador")
-    public String homeAdministrador() {
+    public String homeAdministrador(HttpSession session, Model model) {
+        Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+        if (usuario == null) {
+            return "redirect:/login";
+        }
+        model.addAttribute("usuario", usuario);
         return "home/home-administrador.html";
     }
 }
