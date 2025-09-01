@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Voluntários</title>
+
+    <link rel="stylesheet" th:href="@{/css/styleUsers.css}">
 </head>
 <body>
     <div th:if="${successMessage}" class="alert alert-success" role="alert">
         <span th:text="${successMessage}" style="color: green;"></span>
     </div>
 
-    <!-- 
-    -->
     <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
         <span th:text="${errorMessage}"></span>
     </div> 

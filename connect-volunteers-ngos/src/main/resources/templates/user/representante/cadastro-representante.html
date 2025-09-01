@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <link rel="stylesheet" th:href="@{/css/styleCadastroUsers.css}">
 </head>
 <body>
     <!-- <div th:if="${successMessage}" class="alert alert-success" role="alert">
@@ -14,7 +16,7 @@
       <span th:text="${errorMessage}" style="color: red;"></span>
     </div>
 
-    <h1>Cadastro de Voluntário</h1>
+    <h1>Cadastro de Representante</h1>
         <form th:action="@{/representantes}" th:object="${representante}" method="post">
             <fieldset>
                 <legend>Ficha Cadastral</legend>

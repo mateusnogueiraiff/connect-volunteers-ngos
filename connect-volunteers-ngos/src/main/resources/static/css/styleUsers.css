@@ -1,0 +1,164 @@
+@charset "UTF-8";
+
+/* === CSS UNIFICADO PARA PÁGINAS DE LISTAGEM === */
+
+/* Paleta de cores */
+:root {
+    --green-dark: #2e7d32;
+    --green-medium: #43a047;
+    --green-light: #c8e6c9;
+    --white: #ffffff;
+    --gray-light: #f5f5f5;
+    --gray-dark: #444444;
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--gray-light);
+    color: var(--gray-dark);
+    padding: 20px;
+}
+
+/* Mensagens de alerta */
+.alert {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.alert-success {
+    background-color: #d0f0c0;
+    color: var(--green-dark);
+    border: 1px solid #a5d6a7;
+}
+
+.alert-danger {
+    background-color: #fddede;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+}
+
+/* Títulos */
+h1 {
+    color: var(--green-dark);
+    margin-bottom: 20px;
+    font-size: 2em;
+    text-align: center;
+}
+
+h2 {
+    color: var(--green-medium);
+    margin-bottom: 15px;
+}
+
+/* Tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: var(--white);
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid var(--gray-dark);
+    text-align: left;
+}
+
+th {
+    background-color: var(--green-light);
+    color: var(--green-dark);
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    color: var(--green-dark);
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+a:hover {
+    color: var(--green-medium);
+}
+
+/* Formulários (para botões de filtros ou buscas, se houver) */
+form {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+fieldset {
+    border: 1px solid var(--green-light);
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+legend {
+    font-weight: bold;
+    color: var(--green-dark);
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select,
+output {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+/* Botões */
+button {
+    background-color: var(--green-dark);
+    color: var(--white);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+button:hover {
+    background-color: var(--green-medium);
+}
+
+/* Responsividade simples */
+@media screen and (max-width: 600px) {
+    table, th, td {
+        font-size: 0.9em;
+    }
+
+    form {
+        width: 100%;
+        padding: 15px;
+    }
+}
