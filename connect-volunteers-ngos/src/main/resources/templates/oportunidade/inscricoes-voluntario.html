@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Minhas Inscrições</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Minhas Inscrições</h1>
+
+        <div th:if="${#lists.isEmpty(inscricoes)}">
+            <p>Você ainda não se inscreveu em nenhuma vaga.</p>
+        </div>
+
+        <div th:if="${!#lists.isEmpty(inscricoes)}">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Vaga</th>
+                        <th>ONG</th>
+                        <th>Status</th>
+                        <th>Data da Inscrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="inscricao : ${inscricoes}">
+                        <td th:text="${inscricao.vaga.nome}"></td>
+                        <td th:text="${inscricao.vaga.ong.nome}"></td>
+                        <td th:text="${inscricao.status}"></td>
+                        <td th:text="${inscricao.dataInscricao}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <br>
+        <a th:href="@{/home-voluntario}">Voltar para Home</a>
+    </div>
+</body>
+</html>

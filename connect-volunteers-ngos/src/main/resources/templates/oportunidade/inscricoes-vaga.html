@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscrições da Vaga</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Inscrições da vaga: <span th:text="${vaga.nome}"></span></h1>
+        <h3>ONG: <span th:text="${vaga.ong.nome}"></span></h3>
+        <p><strong>Descrição:</strong> <span th:text="${vaga.descricao}"></span></p>
+        <p><strong>Requisitos:</strong> <span th:text="${vaga.requisitos}"></span></p>
+        <p><strong>Local:</strong> <span th:text="${vaga.local}"></span></p>
+        <p><strong>Data/Horário:</strong> <span th:text="${vaga.dataHorario}"></span></p>
+
+        <hr>
+
+        <div th:if="${#lists.isEmpty(inscricoes)}">
+            <p>Nenhum voluntário se inscreveu ainda.</p>
+        </div>
+
+        <div th:if="${!#lists.isEmpty(inscricoes)}">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Nome do Voluntário</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                        <th>Status</th>
+                        <th>Data da Inscrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="inscricao : ${inscricoes}">
+                        <td th:text="${inscricao.voluntario.nome}"></td>
+                        <td th:text="${inscricao.voluntario.email}"></td>
+                        <td th:text="${inscricao.voluntario.telefone}"></td>
+                        <td th:text="${inscricao.status}"></td>
+                        <td th:text="${inscricao.dataInscricao}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <br>
+        <a th:href="@{/vagas}">Voltar para Vagas</a>
+    </div>
+</body>
+</html>
