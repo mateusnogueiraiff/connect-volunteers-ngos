@@ -2,23 +2,105 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="~{base/baseLayout :: baseHead}"></th:block>
-    <link rel="stylesheet" th:href="@{/css/styleHome.css}">
+    <!--
+        <link rel="stylesheet" th:href="@{/css/styleHome.css}">
+    -->
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f5f6fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            padding: 3rem 1rem;
+        }
+
+        main section img {
+            width: 100%;
+            max-width: 800px; /* mrm tamanho */
+            height: auto;
+            aspect-ratio: 3 / 2; /* mantém proporção */
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        #box-cadastro {
+            width: 100%;
+            max-width: 800px; /* mrm tamanho */
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        #box-cadastro p:first-of-type {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        #box-cadastro .botoes {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap; /* se a tela for muito estreita, os botões quebram embaixo */
+        }
+
+        #button-cadastro-voluntario p a, #button-cadastro-representante p a {
+            display: inline-block;
+            background: #0984e3;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+            min-width: 220px;
+            text-align: center;
+        }
+
+        #button-cadastro-representante p a {
+            background: #00b894;
+        }
+
+        #button-cadastro-voluntario p a:hover {
+            background: #076bb3;
+        }
+
+        #button-cadastro-representante p a:hover {
+            background: #019063;
+        }
+    </style>
 </head>
 <body>
     <header th:replace="~{base/baseLayout :: baseHeaderPage}"></header>
 
     <main>
         <section>
-            <img src="#" alt="Imagem (alguma relacionada a voluntariado)">
+            <img th:src="@{/img/pexels-voluntario.jpg}" alt="Volunteers Needed">
         </section>
 
         <section id="box-cadastro">
-            <p>Colocar alguma frase de efeito relacionada ao ato voluntário</p>
-            <div id="button-cadastro-voluntario">
-                <p><a th:href="@{/voluntarios/new}">Seja Voluntário (a)</a></p>
-            </div>
-            <div id="button-cadastro-representante">
-                <p><a href="/cadastro">Cadastre o orgão/entidade</a></p>
+            <p>Pequenas ações geram grandes transformações. Seu gesto pode mudar o mundo de alguém!</p>
+            <div class="botoes">
+                <div id="button-cadastro-voluntario">
+                    <p><a th:href="@{/voluntarios/new}">Seja Voluntário (a)</a></p>
+                </div>
+
+                <div id="button-cadastro-representante">
+                    <p><a th:href="@{/representantes/new}">Sou Representante de ONG</a></p>
+                </div>
             </div>
         </section>
     </main>
