@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Erro Interno</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 { color: #ef6c00; }
+        p { margin-bottom: 20px; }
+        a {
+            text-decoration: none;
+            background: #2e7d32;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        a:hover { background: #43a047; }
+    </style>
+</head>
+<body>
+    <h1>500 - Erro interno do servidor</h1>
+    <p>Algo deu errado. Nossa equipe já foi notificada.</p>
+    <a th:href="@{/}">Voltar para a Home</a>
+</body>
+</html>
