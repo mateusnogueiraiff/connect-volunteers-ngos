@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.user.Voluntario;
+import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.exception.VoluntarioNaoEncontradoException;
 import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.repository.VoluntarioRepository;
 
 // Alterado - agora utilizando o JPA Repository
@@ -20,7 +21,8 @@ public class VoluntarioService {
     }
 
     public Voluntario findVoluntarioById(Long id) {
-        return voluntarioRepository.findById(id).orElse(null);
+        return voluntarioRepository.findById(id)
+                .orElseThrow(() -> new VoluntarioNaoEncontradoException("Voluntário com id " + id + " não encontrado."));
     }
 
     public List<Voluntario> findAllVoluntarios() {
