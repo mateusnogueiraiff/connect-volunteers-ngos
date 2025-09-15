@@ -18,7 +18,6 @@ public interface VoluntarioRepository extends JpaRepository<Voluntario, Long> {
     /* verificar como fazer o select de um tipo de usuario especifico, ex: voluntario
 
     @Query("SELECT u FROM Voluntario u WHERE u.funcao = "voluntario"")
-    
+
     */
 }
-
