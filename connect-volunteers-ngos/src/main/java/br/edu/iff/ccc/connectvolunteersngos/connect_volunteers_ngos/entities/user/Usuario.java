@@ -5,10 +5,12 @@ import java.io.Serializable;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -21,12 +23,20 @@ public class Usuario implements Serializable {
     private Long idUser;
 
     @NotEmpty(message = "O campo nome não pode ficar em branco")
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false, unique = true) // email obrigatório e único
     private String email;
 
     @Size(min = 8, max = 20, message = "A senha deve conter de 8 a 20 caracteres")
+    @Column(nullable = false)
     private String senha;
+
+    @Pattern(regexp = "\\(\\d{2}\\) \\d{4,5}-\\d{4}", message = "O telefone deve estar no formato (XX) XXXXX-XXXX")
     private String telefone;
+
+    @Column(nullable = false)
     private String funcao;
 
     public Usuario() {
