@@ -1,6 +1,8 @@
 package br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.user.Voluntario;
@@ -15,9 +17,11 @@ public interface VoluntarioRepository extends JpaRepository<Voluntario, Long> {
 
     List<Voluntario> findAll();
 
-    /* verificar como fazer o select de um tipo de usuario especifico, ex: voluntario
+    // busca nomes que possuam a "parte" passada por parâmetro
+    @Query("SELECT v FROM Voluntario v WHERE LOWER(v.nome) LIKE LOWER(CONCAT('%', :nomePart, '%'))")
+    List<Voluntario> searchByNomeLike(@Param("nomePart") String nomePart);
 
-    @Query("SELECT u FROM Voluntario u WHERE u.funcao = "voluntario"")
-
-    */
+    // busca exatamente o email passado por parâmetro
+    @Query("SELECT v FROM Voluntario v WHERE v.email = :email")
+    Voluntario findByEmailExact(@Param("email") String email);
 }

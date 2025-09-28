@@ -36,4 +36,20 @@ public class VoluntarioService {
     public Voluntario findByEmail(String email) {
         return voluntarioRepository.findByEmail(email);
     }
+
+    public void deleteVoluntario(Long id) {
+        voluntarioRepository.deleteById(id);
+    }
+
+
+/* Query - Buscas Personalizadas */
+    // Busca por nome aproximado
+    public List<Voluntario> searchVoluntariosByNome(String nomePart) {
+        return voluntarioRepository.searchByNomeLike(nomePart);
+    }
+
+    // Busca por email exato
+    public Voluntario findVoluntarioByEmail(String email) {
+        return voluntarioRepository.findByEmailExact(email);
+    }
 }
