@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
-
-
 @Controller
 @RequestMapping(path = "voluntarios")
 public class VoluntarioController {
@@ -30,10 +27,12 @@ public class VoluntarioController {
 
         Voluntario voluntario = voluntarioService.findVoluntarioById(id);
 
+        /* Não se aplica mais, pois agora a exceção já é tratada dentro do método "voluntarioService.findVoluntarioById(id)"
+        
         if (voluntario == null) {
             redirectAttributes.addFlashAttribute("errorMessage", "Voluntário não encontrado!");
             return "redirect:/voluntarios";
-        }
+        } */
 
         model.addAttribute("voluntário", voluntario);
         return "user/voluntario/voluntario.html";
