@@ -22,6 +22,12 @@ public class VoluntarioController {
     @Autowired
     VoluntarioService voluntarioService;
 
+    @GetMapping()
+    public String getAllVoluntarios(Model model) {
+        model.addAttribute("voluntarios", voluntarioService.findAllVoluntarios());
+        return "user/voluntario/voluntarios.html";
+    }
+
     @GetMapping("/{id}")
     public String getVoluntariosPage(@PathVariable("id") Long id, Model model, RedirectAttributes redirectAttributes) {
 
@@ -34,14 +40,8 @@ public class VoluntarioController {
             return "redirect:/voluntarios";
         } */
 
-        model.addAttribute("voluntário", voluntario);
+        model.addAttribute("voluntario", voluntario);
         return "user/voluntario/voluntario.html";
-    }
-
-    @GetMapping()
-    public String getAllVoluntarios(Model model) {
-        model.addAttribute("voluntarios", voluntarioService.findAllVoluntarios());
-        return "user/voluntario/voluntarios.html";
     }
 
     @GetMapping("/new")
@@ -49,7 +49,6 @@ public class VoluntarioController {
         model.addAttribute("voluntario", new Voluntario());
         return "user/voluntario/cadastro-voluntario.html";
     }
-    
 
     @PostMapping()
     public String saveVoluntario(@Valid Voluntario voluntario, BindingResult error, Model model, RedirectAttributes redirectAttributes) {
@@ -61,5 +60,57 @@ public class VoluntarioController {
         voluntarioService.saveVoluntario(voluntario);
         redirectAttributes.addFlashAttribute("successMessage", "Voluntário salvo com sucesso!");
         return "redirect:/voluntarios";
+    }
+
+    // Exibe o formulário de edição
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable("id") Long id, Model model) {
+        Voluntario voluntario = voluntarioService.findVoluntarioById(id);
+        model.addAttribute("voluntario", voluntario);
+        return "user/voluntario/editar-voluntario.html";
+    }
+
+    // Processa a atualização do formulário
+   @PostMapping("/update/{id}")
+    public String updateVoluntario(@PathVariable("id") Long id, @Valid Voluntario voluntarioForm, BindingResult result, RedirectAttributes redirectAttributes) {
+        
+        if (result.hasErrors()) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Erro ao atualizar o perfil. Verifique os campos.");
+            return "redirect:/voluntarios/edit/" + id;
+        }
+
+        try {
+            Voluntario voluntarioExistente = voluntarioService.findVoluntarioById(id);
+
+            // Atualiza os dados do objeto persistido
+            voluntarioExistente.setNome(voluntarioForm.getNome());
+            voluntarioExistente.setEmail(voluntarioForm.getEmail());
+            voluntarioExistente.setTelefone(voluntarioForm.getTelefone());
+            voluntarioExistente.setDataNasc(voluntarioForm.getDataNasc());
+
+            voluntarioService.saveVoluntario(voluntarioExistente);
+
+            redirectAttributes.addFlashAttribute("successMessage", "Perfil atualizado com sucesso!");
+            return "redirect:/voluntarios/" + id;
+
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Ocorreu um erro ao atualizar o perfil.");
+            return "redirect:/voluntarios/edit/" + id;
+        }
+    }
+
+    // Processa a exclusão do voluntário
+    @PostMapping("/delete/{id}")
+    public String deleteVoluntario(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+        try {
+            voluntarioService.findVoluntarioById(id);
+            voluntarioService.deleteVoluntario(id);
+            redirectAttributes.addFlashAttribute("successMessage", "Perfil excluído com sucesso!");
+            return "redirect:/";
+        } catch (Exception e) {
+            // Captura outras exceções que possam ocorrer durante a exclusão
+            redirectAttributes.addFlashAttribute("errorMessage", "Erro ao excluir o perfil. O voluntário pode estar associado a inscrições.");
+            return "redirect:/voluntarios";
+        }
     }
 }

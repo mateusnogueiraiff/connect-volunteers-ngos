@@ -2,12 +2,17 @@ package br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.us
 
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 
 @Entity
 public class Voluntario extends Usuario {
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dataNasc;
+
+    //remover
     private int idade;
 
     public Voluntario(){
