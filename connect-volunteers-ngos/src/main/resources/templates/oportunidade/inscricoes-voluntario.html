@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Minhas Inscrições</title>
-    
     <link rel="stylesheet" th:href="@{/css/styleVagas.css}">
 </head>
 <body>
@@ -22,14 +21,21 @@
                         <th>ONG</th>
                         <th>Status</th>
                         <th>Data da Inscrição</th>
-                    </tr>
+                        <th>Ações</th> </tr>
                 </thead>
                 <tbody>
                     <tr th:each="inscricao : ${inscricoes}">
                         <td th:text="${inscricao.vaga.nome}"></td>
                         <td th:text="${inscricao.vaga.ong.nome}"></td>
                         <td th:text="${inscricao.status}"></td>
-                        <td th:text="${inscricao.dataInscricao}"></td>
+                        <td th:text="${#temporals.format(inscricao.dataInscricao, 'dd/MM/yyyy HH:mm')}"></td>
+                        <td>
+                            <form th:action="@{/inscricoes/cancelar/{id}(id=${inscricao.id})}" method="post">
+                                <button type="submit" onclick="return confirm('Tem certeza que deseja cancelar esta inscrição?')" class="link-excluir" style="border: none; background: none; padding: 0; text-decoration: underline; cursor: pointer; font-family: inherit; font-size: inherit;">
+                                    Cancelar
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                 </tbody>
             </table>
