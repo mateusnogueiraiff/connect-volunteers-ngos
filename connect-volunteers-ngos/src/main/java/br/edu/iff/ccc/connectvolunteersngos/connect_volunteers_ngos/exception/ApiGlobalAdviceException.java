@@ -6,6 +6,8 @@ import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.exception.oportunidades.InscricaoNaoEncontradaException;
+import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.exception.oportunidades.VagaNaoEncontradaException;
 import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.exception.users.AdministradorNaoEncontradoException;
 import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.exception.users.RepresentanteNaoEncontradoException;
 import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.exception.users.VoluntarioNaoEncontradoException;
@@ -71,6 +73,36 @@ public class ApiGlobalAdviceException {
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
 
         problemDetail.setTitle("Administrador não encontrado");
+        problemDetail.setProperty("url", req.getRequestURL().toString());
+        problemDetail.setProperty("timestamp", LocalDateTime.ofInstant(Instant.now(), ZoneId.systemDefault()).toString());
+        problemDetail.setProperty("status", HttpStatus.NOT_FOUND.value());
+        problemDetail.setProperty("message", ex.getMessage());
+        problemDetail.setProperty("exception", ex.getClass().getName());
+        problemDetail.setProperty("path", req.getRequestURI());
+
+        return problemDetail;
+    }
+
+    @ExceptionHandler(VagaNaoEncontradaException.class)
+    public ProblemDetail handleVagaNaoEncontrada(HttpServletRequest req, VagaNaoEncontradaException ex) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
+
+        problemDetail.setTitle("Vaga não encontrada");
+        problemDetail.setProperty("url", req.getRequestURL().toString());
+        problemDetail.setProperty("timestamp", LocalDateTime.ofInstant(Instant.now(), ZoneId.systemDefault()).toString());
+        problemDetail.setProperty("status", HttpStatus.NOT_FOUND.value());
+        problemDetail.setProperty("message", ex.getMessage());
+        problemDetail.setProperty("exception", ex.getClass().getName());
+        problemDetail.setProperty("path", req.getRequestURI());
+
+        return problemDetail;
+    }
+
+    @ExceptionHandler(InscricaoNaoEncontradaException.class)
+    public ProblemDetail handleInscricaoNaoEncontrada(HttpServletRequest req, InscricaoNaoEncontradaException ex) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
+
+        problemDetail.setTitle("Inscrição não encontrada");
         problemDetail.setProperty("url", req.getRequestURL().toString());
         problemDetail.setProperty("timestamp", LocalDateTime.ofInstant(Instant.now(), ZoneId.systemDefault()).toString());
         problemDetail.setProperty("status", HttpStatus.NOT_FOUND.value());

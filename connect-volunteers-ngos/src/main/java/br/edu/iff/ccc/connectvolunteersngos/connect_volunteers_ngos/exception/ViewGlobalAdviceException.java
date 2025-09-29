@@ -4,6 +4,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.exception.oportunidades.InscricaoNaoEncontradaException;
+import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.exception.oportunidades.VagaNaoEncontradaException;
 import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.exception.users.AdministradorNaoEncontradoException;
 import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.exception.users.RepresentanteNaoEncontradoException;
 import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.exception.users.VoluntarioNaoEncontradoException;
@@ -32,6 +34,18 @@ public class ViewGlobalAdviceException {
 
     @ExceptionHandler(AdministradorNaoEncontradoException.class)
     public String handleAdministradorNaoEncontrado(AdministradorNaoEncontradoException ex, Model model) {
+        model.addAttribute("errorMessage", ex.getMessage());
+        return "error";
+    }
+
+    @ExceptionHandler(VagaNaoEncontradaException.class)
+    public String handleVagaNaoEncontrada(VagaNaoEncontradaException ex, Model model) {
+        model.addAttribute("errorMessage", ex.getMessage());
+        return "error";
+    }
+
+    @ExceptionHandler(InscricaoNaoEncontradaException.class)
+    public String handleInscricaoNaoEncontrada(InscricaoNaoEncontradaException ex, Model model) {
         model.addAttribute("errorMessage", ex.getMessage());
         return "error";
     }
