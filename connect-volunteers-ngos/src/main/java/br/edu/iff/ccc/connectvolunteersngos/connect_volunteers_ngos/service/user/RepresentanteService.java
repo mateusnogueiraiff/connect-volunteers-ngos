@@ -1,60 +1,43 @@
 package br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.service.user;
 
-import java.util.ArrayList;
-
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.Ong;
 import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.user.Representante;
-import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.service.OngService;
+import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.exception.users.RepresentanteNaoEncontradoException;
+import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.repository.users.RepresentanteRepository;
 
 @Service
 public class RepresentanteService {
     
-    private ArrayList<Representante> representantes; // atributo global
-    private Long nextId = 2L; // já existem 3 na lista inicial - SOMENTE PARA SIMULAÇÃO
+    @Autowired
+    private RepresentanteRepository representanteRepository;
 
-    public RepresentanteService() {
-        representantes = new ArrayList<>();
-
-        OngService ongService = new OngService();
-        Ong ongTeste = ongService.findAllOngs().get(2);
-
-        representantes.add(new Representante(1L, "Representante 1", "teste1@representante.com", "123", "(22) 98989-9898", "Representante", ongTeste));
-    }
-
-    public void saveRepresentante(Representante representante) {
-        if (representante.getIdUser() == null) {
-            representante.setIdUser(nextId++);
-        }
-
-        representantes.add(representante);
-
-        System.out.println("ID: " + representante.getIdUser() +
-        " Nome: " + representante.getNome() +
-        " Email: " + representante.getEmail() +
-        " Telefone: " + representante.getTelefone() + 
-        " Função: " + representante.getFuncao() +
-        " ONG: " + representante.getOng().getNome());
-
+    public Representante saveRepresentante(Representante representante) {
+        return representanteRepository.save(representante);
     }
 
     public Representante findRepresentanteById(Long id) {
-        // testando com o arraylist
-        if (id == null) {
-            return null;
-        }
-
-        for (Representante representante : representantes) {
-            if (representante.getIdUser() != null && representante.getIdUser().equals(id)) {
-                return representante;
-            }
-        }
-
-        return null;
+        return representanteRepository.findById(id)
+                .orElseThrow(() -> new RepresentanteNaoEncontradoException("Representante com id " + id + " não encontrado."));
     }
 
-    public ArrayList<Representante> findAllRepresentantes() {
-        return representantes;
+    public List<Representante> findAllRepresentantes() {
+        return representanteRepository.findAll();
+    }
+
+    public void deleteRepresentante(Long id) {
+        representanteRepository.deleteById(id);
+    }
+
+    /* Query - Buscas Personalizadas */
+    // Busca por nome aproximado
+    public List<Representante> searchVoluntariosByNome(String nomePart) {
+        return representanteRepository.searchByNomeLike(nomePart);
+    }
+
+    // Busca por email exato
+    public Representante findVoluntarioByEmail(String email) {
+        return representanteRepository.findByEmailExact(email);
     }
 }
