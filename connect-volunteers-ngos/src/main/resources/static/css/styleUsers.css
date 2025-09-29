@@ -151,6 +151,23 @@ button:hover {
     background-color: var(--green-medium);
 }
 
+/* Remove o estilo de formulário para os botões de ação na tabela */
+td form {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    max-width: none;
+    margin-bottom: 0;
+    box-shadow: none;
+}
+
+.link-excluir {
+    color: #c62828;
+}
+.link-excluir:hover {
+    color: #e53935;
+}
+
 /* Responsividade simples */
 @media screen and (max-width: 600px) {
     table, th, td {
