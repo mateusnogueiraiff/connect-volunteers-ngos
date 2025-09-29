@@ -4,26 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalhes do Voluntário</title>
-
     <link rel="stylesheet" th:href="@{/css/styleUser.css}">
 </head>
 <body>
     <h1>Ficha do Voluntário</h1>
 
-    <!-- <div th:if="${errorMessage}">
-        <p th:text="${errorMessage}" style="color:red;"></p>
-    </div> -->
-
-    <div th:unless="${errorMessage}">
-        <p><strong>ID User:</strong> <span th:text="${voluntário.idUser}"></span></p>
-        <p><strong>Nome:</strong> <span th:text="${voluntário.nome}"></span></p>
-        <p><strong>Data de Nascimento:</strong> <span th:text="${voluntário.dataNasc}"></span></p>
-        <p><strong>Idade:</strong> <span th:text="${voluntário.idade}"></span></p>
-        <p><strong>Email:</strong> <span th:text="${voluntário.email}"></span></p>
-        <p><strong>Telefone:</strong> <span th:text="${voluntário.telefone}"></span></p>
-        <p><strong>Função:</strong> <span th:text="${voluntário.funcao}"></span></p>
+    <div th:object="${voluntario}" th:unless="${errorMessage}">
+        <p><strong>ID User:</strong> <span th:text="*{idUser}"></span></p>
+        <p><strong>Nome:</strong> <span th:text="*{nome}"></span></p>
+        <p><strong>Data de Nascimento:</strong> <span th:text="*{dataNasc}"></span></p>
+        <p><strong>Email:</strong> <span th:text="*{email}"></span></p>
+        <p><strong>Telefone:</strong> <span th:text="*{telefone}"></span></p>
+        <p><strong>Função:</strong> <span th:text="*{funcao}"></span></p>
     </div>
 
-    <a th:href="@{/voluntarios}">Voltar para lista de voluntários</a>
+    <div style="text-align: center; margin-top: 20px;">
+        <a th:href="@{/voluntarios/edit/{id}(id=${voluntario.idUser})}" class="btn-link">Editar Perfil</a>
+        
+        <form th:action="@{/voluntarios/delete/{id}(id=${voluntario.idUser})}" method="post" style="display:inline; margin-left: 10px;">
+            <button type="submit" onclick="return confirm('Tem certeza que deseja excluir seu perfil? Esta ação não pode ser desfeita.');" style="background-color: #c62828; color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 5px; font-weight: bold;">
+                Excluir Perfil
+            </button>
+        </form>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a th:href="@{/voluntarios}">Voltar para lista de voluntários</a>
+    </div>
 </body>
 </html>
