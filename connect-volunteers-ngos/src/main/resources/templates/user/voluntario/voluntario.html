@@ -9,7 +9,7 @@
 <body>
     <h1>Ficha do Voluntário</h1>
 
-    <div th:object="${voluntario}" th:unless="${errorMessage}">
+    <div th:object="${voluntario}" th:unless="${errorMessage}" class="profile-container">
         <p><strong>ID User:</strong> <span th:text="*{idUser}"></span></p>
         <p><strong>Nome:</strong> <span th:text="*{nome}"></span></p>
         <p><strong>Data de Nascimento:</strong> <span th:text="*{dataNasc}"></span></p>
