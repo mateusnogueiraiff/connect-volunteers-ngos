@@ -7,7 +7,7 @@ O **Connect Volunteers & NGOs** é uma aplicação web voltada para conectar vol
 
 ## Tecnologias Utilizadas
 - **Java 17**
-- **Spring Boot 3.5.4**
+- **Spring Boot 3.5.4** (Spring Web, Spring Data JPA, Spring Boot Starter Validation)
 - **Thymeleaf** (para renderização de páginas HTML)
 - **Banco de Dados H2** (em memória para desenvolvimento)
 - **Maven** (gerenciador de dependências)
@@ -16,13 +16,19 @@ O **Connect Volunteers & NGOs** é uma aplicação web voltada para conectar vol
 ---
 
 ## Funcionalidades Principais
-1. Cadastro e login de usuários (Voluntários, Representantes e Administradores)
-2. Cadastro e gerenciamento de vagas
-3. Visualização de vagas disponíveis
-4. Inscrição de voluntários em vagas
-5. Consulta de inscrições por vaga
-6. Perfis de usuários com detalhes completos
-7. Mensagens de sucesso e erro ao realizar operações
+
+### Interface Web (MVC)
+1. CRUD Completo para Entidades (Gerenciamento completo: Criar, Ler, Atualizar e Excluir para Voluntários, Representantes, Administradores, ONGs e Vagas diretamente pela interface)
+2. Sistema de Login: Autenticação de usuários com diferentes perfis (Voluntário, Representante, Administrador)
+3. Inscrição em Vagas: Voluntários podem se inscrever e cancelar suas inscrições em vagas.
+4. Visualização de Inscrições: Representantes podem ver a lista de voluntários inscritos em suas vagas, e voluntários podem ver suas próprias inscrições.
+5. Tratamento de Erros: Páginas de erro personalizadas para uma melhor experiência do usuário.
+
+### API RESTful
+1. Endpoints CRUD para todos os Recursos: API completa com operações de Criar, Ler, Atualizar e Excluir para todas as principais entidades (Voluntario, Representante, Administrador, ONG, Vaga, Inscricao).
+2. Padrões REST: Utilização correta de verbos HTTP, URLs baseadas em recursos e versionamento (/api/v1/...).
+3. Tratamento de Exceções Padronizado: Respostas de erro para a API seguem o padrão ProblemDetail (RFC 7807), garantindo uma comunicação clara e padronizada para os clientes da API.
+4. Documentação com Swagger: A API é autodocumentada com Swagger, fornecendo uma interface interativa para explorar e testar os endpoints.
 
 ---
 
@@ -66,6 +72,13 @@ O banco H2 é utilizado para desenvolvimento e está configurado em memória. Pa
 - JDBC URL: "jdbc:h2:mem:connect-volunteers-ngos"
 - Username: "sa"
 - Password: "password"
+
+### Passo 6: Acesso à API e Documentação
+Documentação da API (Swagger UI)
+
+A documentação interativa da API REST está disponível e pode ser acessada enquanto a aplicação está em execução.
+
+1. URL da Documentação: http://localhost:8080/swagger-ui.html
 
 ## Observações
 
