@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -24,6 +25,7 @@ public class Vaga implements Serializable {
     private int quantidadeDeVagas;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Ong ong; // cada vaga está vinculada a uma ONG
 
     public Vaga() {}
