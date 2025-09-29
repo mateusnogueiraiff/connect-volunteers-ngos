@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de ONGs</title>
+    <link rel="stylesheet" th:href="@{/css/styleUsers.css}">
+</head>
+<body>
+    <h1>Lista de ONGs</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CNPJ</th>
+                <th>Email</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="ong : ${ongs}">
+                <td th:text="${ong.id}"></td>
+                <td th:text="${ong.nome}"></td>
+                <td th:text="${ong.cnpj}"></td>
+                <td th:text="${ong.email}"></td>
+                <td>
+                    <a th:href="@{/ongs/{id}(id=${ong.id})}">Ver</a> |
+                    <a th:href="@{/ongs/edit/{id}(id=${ong.id})}">Editar</a> |
+                    <form th:action="@{/ongs/delete/{id}(id=${ong.id})}" method="post" style="display: inline;">
+                        <button type="submit" onclick="return confirm('Tem certeza?')" class="link-excluir" style="border: none; background: none; padding: 0; text-decoration: underline; cursor: pointer; font-family: inherit; font-size: inherit;">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p><a th:href="@{/ongs/new}">Cadastrar Nova ONG</a></p>
+</body>
+</html>

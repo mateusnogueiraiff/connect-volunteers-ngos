@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cadastrar ONG</title>
+    <link rel="stylesheet" th:href="@{/css/styleCadastroUsers.css}">
+</head>
+<body>
+    <h1>Cadastro de ONG</h1>
+    <form th:action="@{/ongs}" th:object="${ong}" method="post">
+        <fieldset>
+            <legend>Dados da ONG</legend>
+            <p><label>Nome: </label><input type="text" th:field="*{nome}" required></p>
+            <p><label>CNPJ: </label><input type="text" th:field="*{cnpj}"></p>
+            <p><label>Descrição: </label><input type="text" th:field="*{descricao}"></p>
+            <p><label>Email: </label><input type="email" th:field="*{email}"></p>
+            <p><label>Telefone: </label><input type="text" th:field="*{telefone}"></p>
+        </fieldset>
+        <button type="submit">Salvar</button>
+    </form>
+</body>
+</html>

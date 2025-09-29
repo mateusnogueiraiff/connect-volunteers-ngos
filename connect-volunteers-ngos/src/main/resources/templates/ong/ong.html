@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detalhes da ONG</title>
+    <link rel="stylesheet" th:href="@{/css/styleUser.css}">
+</head>
+<body>
+    <h1>Ficha da ONG</h1>
+    <div class="profile-container" th:object="${ong}">
+        <p><strong>ID:</strong> <span th:text="*{id}"></span></p>
+        <p><strong>Nome:</strong> <span th:text="*{nome}"></span></p>
+        <p><strong>CNPJ:</strong> <span th:text="*{cnpj}"></span></p>
+        <p><strong>Descrição:</strong> <span th:text="*{descricao}"></span></p>
+        <p><strong>Email:</strong> <span th:text="*{email}"></span></p>
+        <p><strong>Telefone:</strong> <span th:text="*{telefone}"></span></p>
+    </div>
+    <a th:href="@{/ongs}">Voltar para a lista</a>
+</body>
+</html>
