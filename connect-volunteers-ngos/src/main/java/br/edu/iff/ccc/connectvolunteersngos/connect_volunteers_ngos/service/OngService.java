@@ -1,44 +1,33 @@
 package br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.service;
 
-import java.util.ArrayList;
-
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.Ong;
+import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.exception.OngNaoEncontradaException;
+import br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.repository.OngRepository;
 
 @Service
 public class OngService {
-    private ArrayList<Ong> ongs = new ArrayList<>();
-    private Long nextId = 4L; // já existem 3 ONGs criadas
 
-    public OngService() {
-        ongs.add(new Ong(1L, "Ong Teste", "12.345.678/9090-00", "Descrição da ONG", "(22) 97979-9797", "teste1@ong.com"));
-        ongs.add(new Ong(2L, "Ong Animais", "98.765.432/0001-11", "Ajuda animais de rua", "(22) 98888-7777", "contato@animais.org"));
-        ongs.add(new Ong(3L, "Ong Crianças", "98.765.432/0001-11", "Ajuda crianças orfãos", "(22) 98888-7777", "contato@criancas.org"));
-    }
+    @Autowired
+    private OngRepository ongRepository;
 
-    public ArrayList<Ong> findAllOngs() {
-        return ongs;
+    public List<Ong> findAllOngs() {
+        return ongRepository.findAll();
     }
 
     public Ong saveOng(Ong ong) {
-        if (ong.getId() == null) {
-            ong.setId(nextId++);
-        }
-        ongs.add(ong);
-        return ong;
+        return ongRepository.save(ong);
     }
 
     public Ong findById(Long id) {
-        if (id == null) {
-            return null;
-        }
-
-        for (Ong ong : ongs) {
-            if (ong.getId().equals(id)) {
-                return ong;
-            }
-        }
-        return null;
+        return ongRepository.findById(id)
+                .orElseThrow(() -> new OngNaoEncontradaException("ONG com id " + id + " não encontrada."));
+    }
+    
+    public void deleteOng(Long id) {
+        Ong ong = findById(id);
+        ongRepository.delete(ong);
     }
 }
