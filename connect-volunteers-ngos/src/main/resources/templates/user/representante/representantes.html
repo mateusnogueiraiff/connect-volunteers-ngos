@@ -29,6 +29,7 @@
                 <th>Telefone</th>
                 <th>Função</th>
                 <th>ONG</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -39,6 +40,18 @@
                 <td th:text="${representante.telefone}"></td>
                 <td th:text="${representante.funcao}"></td>
                 <td th:text="${representante.ong.nome}"></td>
+                <td>
+                    <a th:href="@{/representantes/{id}(id=${representante.idUser})}">Ver</a> |
+                    <a th:href="@{/representantes/edit/{id}(id=${representante.idUser})}">Editar</a> |
+                    <form th:action="@{/representantes/delete/{id}(id=${representante.idUser})}" method="post" style="display: inline;">
+                        <button type="submit" 
+                                onclick="return confirm('Tem certeza?')"
+                                class="link-excluir"
+                                style="border: none; background: none; padding: 0; text-decoration: underline; cursor: pointer; font-family: inherit; font-size: inherit;">
+                            Excluir
+                        </button>
+                    </form>
+                </td>
             </tr>
         </tbody>
     </table>

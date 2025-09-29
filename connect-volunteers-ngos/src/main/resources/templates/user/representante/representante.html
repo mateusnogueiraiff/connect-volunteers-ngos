@@ -14,15 +14,27 @@
         <p th:text="${errorMessage}" style="color:red;"></p>
     </div> -->
 
-    <div th:unless="${errorMessage}">
-        <p><strong>ID User:</strong> <span th:text="${representante.idUser}"></span></p>
-        <p><strong>Nome:</strong> <span th:text="${representante.nome}"></span></p>
-        <p><strong>Email:</strong> <span th:text="${representante.email}"></span></p>
-        <p><strong>Telefone:</strong> <span th:text="${representante.telefone}"></span></p>
-        <p><strong>Função:</strong> <span th:text="${representante.funcao}"></span></p>
-        <p><strong>ONG:</strong> <span th:text="${representante.ong.nome}"></span></p>
+    <div th:unless="${errorMessage}" class="profile-container" th:object="${representante}">
+        <p><strong>ID User:</strong> <span th:text="*{idUser}"></span></p>
+        <p><strong>Nome:</strong> <span th:text="*{nome}"></span></p>
+        <p><strong>Email:</strong> <span th:text="*{email}"></span></p>
+        <p><strong>Telefone:</strong> <span th:text="*{telefone}"></span></p>
+        <p><strong>Função:</strong> <span th:text="*{funcao}"></span></p>
+        <p><strong>ONG:</strong> <span th:text="*{ong.nome}"></span></p>
     </div>
 
-    <a th:href="@{/representantes}">Voltar para lista de Representantes</a>
+    <div style="text-align: center; margin-top: 20px;">
+        <a th:href="@{/representantes/edit/{id}(id=${representante.idUser}) class="btn-link"}">Editar Perfil</a>
+        
+        <form th:action="@{/representantes/delete/{id}(id=${representante.idUser})}" method="post" style="display:inline; margin-left: 10px;">
+            <button type="submit" onclick="return confirm('Tem certeza que deseja excluir?')" style="background-color: #c62828; color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 5px; font-weight: bold;">
+                Excluir Perfil
+            </button>
+        </form>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a th:href="@{/representantes}">Voltar para lista de Representantes</a>
+    </div>
 </body>
 </html>

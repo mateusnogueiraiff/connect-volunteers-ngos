@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Representante</title>
+    <link rel="stylesheet" th:href="@{/css/styleCadastroUsers.css}">
+</head>
+<body>
+    <h1>Editar Perfil do Representante</h1>
+
+    <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+      <span th:text="${errorMessage}" style="color: red;"></span>
+    </div>
+
+    <form th:action="@{/representantes/update/{id}(id=${representante.idUser})}" th:object="${representante}" method="post">
+        
+        <input type="hidden" th:field="*{idUser}" />
+
+        <fieldset>
+            <legend>Ficha Cadastral</legend>
+            <p>
+                <label>Nome: </label>
+                <input type="text" placeholder="Nome Completo" th:field="*{nome}" required>
+                <p class="error" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></p>
+            </p>
+            <p>
+                <label>Telefone: </label>
+                <input type="text" placeholder="(22)99999-9999" th:field="*{telefone}">
+                <p class="error" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></p>
+            </p>
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend>Credenciais</legend>
+            <p>
+                <label>Email: </label>
+                <input type="email" th:field="*{email}" required>
+                <p class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+            </p>
+        </fieldset>
+        <br>
+
+        <fieldset>
+            <legend>ONG</legend>
+            <p>
+                <label>ONG Vinculada:</label>
+                <input type="text" th:value="${representante.ong.nome}" disabled>
+            </p>
+        </fieldset>
+
+        <p>
+            <button type="submit">Salvar Alterações</button>
+        </p>
+    </form>
+</body>
+</html>
