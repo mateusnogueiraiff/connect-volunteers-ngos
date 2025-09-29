@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Vagas</title>
+    <link rel="stylesheet" th:href="@{/css/styleVagas.css}">
+</head>
+<body>
+    <h1>Lista de Vagas</h1>
+
+    <div th:if="${successMessage}" class="alert alert-success">
+        <span th:text="${successMessage}"></span>
+    </div>
+    <div th:if="${errorMessage}" class="alert alert-danger">
+        <span th:text="${errorMessage}"></span>
+    </div>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nome da Vaga</th>
+                <th>ONG</th>
+                <th>Requisitos</th>
+                <th>Qtd. Vagas</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="vaga : ${vagas}">
+                <td th:text="${vaga.nome}"></td>
+                <td th:text="${vaga.ong.nome}"></td>
+                <td th:text="${vaga.requisitos}"></td>
+                <td th:text="${vaga.quantidadeDeVagas}"></td>
+                <td>
+                    <a th:href="@{/vagas/{id}(id=${vaga.id})}">Ver detalhes</a>
+                    <div th:if="${usuarioLogado != null and #strings.equals(usuarioLogado.funcao, 'representante')}" style="display: inline;">
+                        | <a th:href="@{/vagas/edit/{id}(id=${vaga.id})}">Editar</a> |
+                        <form th:action="@{/vagas/delete/{id}(id=${vaga.id})}" method="post" style="display: inline;">
+                            <button type="submit" 
+                                    onclick="return confirm('Tem certeza que deseja excluir esta vaga?')"
+                                    class="link-excluir"
+                                    style="border: none; background: none; padding: 0; text-decoration: underline; cursor: pointer; font-family: inherit; font-size: inherit;">
+                                Excluir
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div th:if="${T(br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.user.Voluntario).isInstance(usuarioLogado)}">
+        <a th:href="@{/home-voluntario}">Voltar para Home</a>
+    </div>
+
+    <div th:if="${T(br.edu.iff.ccc.connectvolunteersngos.connect_volunteers_ngos.entities.user.Representante).isInstance(usuarioLogado)}">
+        <a th:href="@{/vagas/new}">Cadastrar nova vaga</a>
+        <a th:href="@{/home-representante}" style="margin-left: 10px;">Voltar para Home</a>
+    </div>
+</body>
+</html>
